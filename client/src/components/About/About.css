@@ -17,44 +17,102 @@
 
 .about__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: start;
+  gap: 56px;
   padding-top: 48px;
+}
+
+.about__intro {
+  padding-top: 8px;
 }
 
 .about__heading {
   font-size: 40px;
   line-height: 1.15;
   letter-spacing: -1px;
+  margin-bottom: 24px;
 }
 
 .about__text {
   font-size: 17px;
   line-height: 1.7;
   color: var(--text);
-  margin-bottom: 36px;
+  max-width: 480px;
 }
 
-.about__focus {
+.about__card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 20px 40px -20px rgba(20, 33, 15, 0.15);
+}
+
+.about__card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.about__avatar {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.about__card-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.about__card-role {
+  font-size: 13px;
+  color: var(--text);
+  margin-top: 2px;
+}
+
+.about__card-list {
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 
-.focus-item {
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
+.about__card-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
 }
 
-.focus-item h3 {
-  font-size: 16px;
-  margin-bottom: 6px;
-}
-
-.focus-item p {
-  font-size: 15px;
-  line-height: 1.6;
+.about__card-row dt {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   color: var(--text);
+  white-space: nowrap;
+}
+
+.about__card-row dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-h);
+  text-align: right;
 }
 
 @media (max-width: 900px) {
@@ -66,6 +124,10 @@
   .about__heading {
     font-size: 32px;
   }
+
+  .about__text {
+    max-width: none;
+  }
 }
 
 @media (max-width: 480px) {
@@ -75,5 +137,9 @@
 
   .about__heading {
     font-size: 28px;
+  }
+
+  .about__card {
+    padding: 22px;
   }
 }

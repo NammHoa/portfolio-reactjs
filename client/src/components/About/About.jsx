@@ -1,18 +1,10 @@
 import './About.css'
 
-const FOCUS_AREAS = [
-  {
-    title: 'Frontend',
-    description: 'React.js and Flutter — building interfaces that feel fast.',
-  },
-  {
-    title: 'Backend',
-    description: 'Node.js, Express.js, ASP.NET Core, and RESTful APIs.',
-  },
-  {
-    title: 'Data & Security',
-    description: 'MongoDB, SQL Server, Firebase, and practical security hygiene.',
-  },
+const EDUCATION = [
+  { term: 'Degree', value: 'Bachelor of Software Engineering' },
+  { term: 'University', value: 'HUFLIT, Ho Chi Minh City' },
+  { term: 'Duration', value: '2022 — 2026' },
+  { term: 'GPA', value: '3.03' },
 ]
 
 function About() {
@@ -24,29 +16,38 @@ function About() {
       </div>
 
       <div className="about__grid">
-        <h2 className="about__heading">
-          A developer who cares about the small details.
-        </h2>
+        <div className="about__intro">
+          <h2 className="about__heading">
+            A developer who cares about the small details.
+          </h2>
 
-        <div className="about__body">
           <p className="about__text">
-            I'm Lam Huynh Hoa Nam, a recent Software Engineering graduate from
-            HUFLIT (Ho Chi Minh City University of Foreign Languages —
+            I'm Lam Huynh Hoa Nam, a recent Software Engineering graduate
+            from HUFLIT (Ho Chi Minh City University of Foreign Languages —
             Information Technology). A quick learner with strong
-            problem-solving skills, I've shipped full-stack systems — from a
-            student enrollment platform handling 600+ users to a payment-
-            integrated e-commerce app and a mobile lab-management tool.
-            Aspiring to grow into a Fullstack Engineer over the next 3 years.
+            problem-solving skills capable of effectively handling technical
+            challenges in real-world environments. Aspiring to grow into 
+            a Fullstack Engineer over the next 3 years.
           </p>
+        </div>
 
-          <div className="about__focus">
-            {FOCUS_AREAS.map((area) => (
-              <div key={area.title} className="focus-item">
-                <h3>{area.title}</h3>
-                <p>{area.description}</p>
+        <div className="about__card">
+          <div className="about__card-header">
+            <span className="about__avatar">LHN</span>
+            <div>
+              <p className="about__card-name">Lam Huynh Hoa Nam</p>
+              <p className="about__card-role">Software Engineering Graduate</p>
+            </div>
+          </div>
+
+          <dl className="about__card-list">
+            {EDUCATION.map((item) => (
+              <div key={item.term} className="about__card-row">
+                <dt>{item.term}</dt>
+                <dd>{item.value}</dd>
               </div>
             ))}
-          </div>
+          </dl>
         </div>
       </div>
     </section>
