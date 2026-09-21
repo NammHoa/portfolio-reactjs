@@ -47,16 +47,23 @@
   direction: ltr;
 }
 
+.project__visual-frame {
+  perspective: 800px;
+  cursor: pointer;
+  border-radius: 16px;
+  clip-path: inset(0 round 16px);
+  box-shadow: 0 20px 40px -16px rgba(20, 33, 15, 0.15);
+}
+
 .project__visual {
   aspect-ratio: 4 / 3;
-  border-radius: 16px;
   background: linear-gradient(155deg, #eef1e8, #dfe6d6);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  box-shadow: 0 20px 40px -16px rgba(20, 33, 15, 0.15);
+  transition: transform 0.15s ease;
 }
 
 .project__visual-index {

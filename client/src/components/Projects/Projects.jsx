@@ -1,3 +1,4 @@
+import { useTilt } from '../../hooks/useTilt'
 import './Projects.css'
 
 const PROJECTS = [
@@ -52,6 +53,8 @@ const PROJECTS = [
 ]
 
 function Projects() {
+  const tilts = [useTilt(8), useTilt(8), useTilt(8)]
+
   return (
     <section className="projects" id="projects">
       <div className="projects__meta">
@@ -71,9 +74,16 @@ function Projects() {
             key={project.name}
             className={`project ${i % 2 === 1 ? 'project--reverse' : ''}`}
           >
-            <div className="project__visual" aria-hidden="true">
-              <span className="project__visual-index">{project.index}</span>
-              <span className="project__visual-name">{project.name}</span>
+            <div
+              className="project__visual-frame"
+              aria-hidden="true"
+              onMouseMove={tilts[i].onMouseMove}
+              onMouseLeave={tilts[i].onMouseLeave}
+            >
+              <div className="project__visual" ref={tilts[i].innerRef}>
+                <span className="project__visual-index">{project.index}</span>
+                <span className="project__visual-name">{project.name}</span>
+              </div>
             </div>
 
             <div className="project__content">
