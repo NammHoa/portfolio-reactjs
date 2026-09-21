@@ -69,9 +69,11 @@
   display: none;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 5px;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
+  margin: -6px;
   padding: 0;
   background: none;
   border: none;
@@ -80,6 +82,7 @@
 
 .header__toggle span {
   display: block;
+  width: 20px;
   height: 2px;
   background: var(--text-h);
   border-radius: 2px;

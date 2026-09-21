@@ -176,6 +176,15 @@
   .project__headline {
     font-size: 28px;
   }
+
+  .project__top {
+    row-gap: 4px;
+  }
+
+  .project__period {
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
