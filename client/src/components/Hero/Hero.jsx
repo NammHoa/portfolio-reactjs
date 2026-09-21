@@ -1,6 +1,9 @@
+import { useTilt } from '../../hooks/useTilt'
 import './Hero.css'
 
 function Hero() {
+  const { innerRef, onMouseMove, onMouseLeave } = useTilt(10)
+
   return (
     <section className="hero" id="home">
       <div className="hero__inner">
@@ -35,19 +38,27 @@ function Hero() {
         </div>
 
         <div className="hero__visual" aria-hidden="true">
-          <div className="code-window">
-            <div className="code-window__bar">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <div className="code-window__body">
-              <div className="code-line code-line--tag" style={{ width: '40%' }}></div>
-              <div className="code-line" style={{ width: '70%' }}></div>
-              <div className="code-line code-line--indent" style={{ width: '55%' }}></div>
-              <div className="code-line code-line--indent code-line--accent" style={{ width: '35%' }}></div>
-              <div className="code-line" style={{ width: '60%' }}></div>
-              <div className="code-line code-line--tag" style={{ width: '30%' }}></div>
+          <div className="hero__float">
+            <div
+              className="code-window-frame"
+              onMouseMove={onMouseMove}
+              onMouseLeave={onMouseLeave}
+            >
+              <div className="code-window" ref={innerRef}>
+                <div className="code-window__bar">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div className="code-window__body">
+                  <div className="code-line code-line--tag" style={{ width: '40%' }}></div>
+                  <div className="code-line" style={{ width: '70%' }}></div>
+                  <div className="code-line code-line--indent" style={{ width: '55%' }}></div>
+                  <div className="code-line code-line--indent code-line--accent" style={{ width: '35%' }}></div>
+                  <div className="code-line" style={{ width: '60%' }}></div>
+                  <div className="code-line code-line--tag" style={{ width: '30%' }}></div>
+                </div>
+              </div>
             </div>
           </div>
           <div className="hero__badge">
