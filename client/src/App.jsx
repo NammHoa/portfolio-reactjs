@@ -3,7 +3,8 @@ import Hero from './components/Hero/Hero'
 import About from './components/About/About'
 import Projects from './components/Projects/Projects'
 import Skills from './components/Skills/Skills'
-import './App.css'
+import Contact from './components/Contact/Contact'
+import Footer from './components/Footer/Footer'
 
 function App() {
   return (
@@ -13,9 +14,8 @@ function App() {
       <About />
       <Projects />
       <Skills />
-      <main className="page-placeholder">
-        <p>Sections coming next: Contact.</p>
-      </main>
+      <Contact />
+      <Footer />
     </div>
   )
 }

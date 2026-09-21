@@ -1,0 +1,30 @@
+.site-footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 24px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.site-footer a {
+  color: var(--text-h);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 560px) {
+  .site-footer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 24px 20px 32px;
+  }
+}
