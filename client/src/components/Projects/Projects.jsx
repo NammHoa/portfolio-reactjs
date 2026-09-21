@@ -1,0 +1,122 @@
+import './Projects.css'
+
+const PROJECTS = [
+  {
+    index: '01',
+    name: 'Grade 10 Enrollment System',
+    role: 'Fullstack Developer · Team of 2',
+    period: 'Jun 2026 – Aug 2026',
+    headlineLines: ['Enrollment,', 'without the chaos.'],
+    description:
+      'A full-stack registration platform for THPT Ham Thuan Nam, handling 600+ students with dynamic subject-combination logic, real-time status tracking, and an asynchronous email queue for automated confirmations.',
+    highlights: [
+      'Admin dashboard with Chart.js analytics',
+      'Excel import/export via PhpSpreadsheet',
+      'BCrypt hashing, CSRF protection, brute-force rate limiting, and SQL-injection-safe prepared statements',
+    ],
+    tags: ['PHP 8.1', 'MySQL', 'HTML/CSS', 'JavaScript'],
+    link: 'nguyenvong.thpthtn',
+  },
+  {
+    index: '02',
+    name: 'SUNILIES',
+    role: 'Fullstack Developer · Team of 2',
+    period: 'Feb 2026 – Jun 2026',
+    headlineLines: ['Commerce,', 'secured end to end.'],
+    description:
+      'An e-commerce platform covering product management, order processing, and user authentication, with MoMo Payment Gateway integrated for real-time transaction confirmation.',
+    highlights: [
+      'HMAC-SHA256 signed MoMo payments with async IPN webhook handling',
+      'Firebase Storage, Stringee Voice OTP, and JavaMail integrations',
+      'Session-fixation prevention, brute-force rate limiting, and XSS sanitization',
+    ],
+    tags: ['Spring Boot', 'Thymeleaf', 'Firebase', 'MoMo API'],
+    link: 'sunilies',
+  },
+  {
+    index: '03',
+    name: 'Sample Management System',
+    role: 'Fullstack Mobile Dev Intern · Team of 6',
+    period: 'Aug 2025 – Nov 2025',
+    headlineLines: ['Lab work,', 'digitized.'],
+    description:
+      'A mobile solution that digitizes laboratory workflows — from sample tracking to automated reporting — independently owned end-to-end within a 6-person team.',
+    highlights: [
+      'Structured schema managing 10+ critical field parameters',
+      'Role-based access control segregating permissions across departments',
+      'Real-time data synchronization with change-log auditing',
+    ],
+    tags: ['Flutter', 'Node.js', 'Firebase'],
+    link: null,
+  },
+]
+
+function Projects() {
+  return (
+    <section className="projects" id="projects">
+      <div className="projects__meta">
+        <span>02 / SELECTED WORK</span>
+        <span>2025 — 2026</span>
+      </div>
+
+      <h2 className="projects__intro">
+        Fewer projects.
+        <br />
+        More depth.
+      </h2>
+
+      <div className="projects__list">
+        {PROJECTS.map((project, i) => (
+          <article
+            key={project.name}
+            className={`project ${i % 2 === 1 ? 'project--reverse' : ''}`}
+          >
+            <div className="project__visual" aria-hidden="true">
+              <span className="project__visual-index">{project.index}</span>
+              <span className="project__visual-name">{project.name}</span>
+            </div>
+
+            <div className="project__content">
+              <div className="project__top">
+                <span className="project__index">{project.index}</span>
+                <span className="project__role">{project.role}</span>
+                <span className="project__period">{project.period}</span>
+              </div>
+
+              <h3 className="project__headline">
+                {project.headlineLines.map((line) => (
+                  <span key={line}>
+                    {line}
+                    <br />
+                  </span>
+                ))}
+              </h3>
+
+              <p className="project__description">{project.description}</p>
+
+              <ul className="project__highlights">
+                {project.highlights.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+
+              <div className="project__tags">
+                {project.tags.map((tag) => (
+                  <span key={tag} className="project__tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {project.link && (
+                <span className="project__link">Live: {project.link}</span>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+export default Projects

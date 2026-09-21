@@ -7,7 +7,7 @@ function Hero() {
         <div className="hero__content">
           <span className="hero__eyebrow">
             <span className="hero__dot"></span>
-            FRONTEND DEVELOPER
+            FULLSTACK ENGINEER
           </span>
 
           <h1 className="hero__title">
@@ -17,8 +17,9 @@ function Hero() {
           </h1>
 
           <p className="hero__subtitle">
-            I'm Nam — I build clean, fast, and thoughtful web experiences,
-            from the first line of code to the last pixel.
+            I'm Nam — a Software Engineering graduate building full-stack
+            products with React, Node.js, and MongoDB, from the first line
+            of code to the last pixel.
           </p>
 
           <div className="hero__actions">
