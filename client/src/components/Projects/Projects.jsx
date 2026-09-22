@@ -48,7 +48,7 @@ const PROJECTS = [
     period: 'Feb 2026 – Jun 2026',
     headlineLines: ['Commerce,', 'secured end to end.'],
     description:
-      'An e-commercecovering product management, order processing, and user authentication, with MoMo Payment Gateway integrated for real-time transaction confirmation.',
+      'An e-commerce covering product management, order processing, and user authentication, with MoMo Payment Gateway integrated for real-time transaction confirmation.',
     highlights: [
       'HMAC-SHA256 signed MoMo payments with async IPN webhook handling',
       'Firebase Storage, Stringee Voice OTP, and JavaMail integrations',
@@ -99,6 +99,7 @@ function ProjectRow({ project, index, reverse, onOpen, tilt }) {
         aria-hidden="true"
         onMouseMove={tilt.onMouseMove}
         onMouseLeave={tilt.onMouseLeave}
+        onClick={onOpen}
       >
         <div
           className="project__visual"
@@ -207,15 +208,9 @@ function Projects() {
   return (
     <section className="projects" id="projects">
       <div className="projects__meta">
-        <span>02 / SELECTED WORK</span>
+        <span>02 / WORK EXPERIENCE</span>
         <span>2025 — 2026</span>
       </div>
-
-      <h2 className="projects__intro">
-        Fewer projects.
-        <br />
-        More depth.
-      </h2>
 
       <div className="projects__list">
         {PROJECTS.map((project, i) => (
