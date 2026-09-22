@@ -112,14 +112,6 @@ function ProjectModal({ project, onClose, onPrev, onNext }) {
             </a>
           )}
 
-          <div className="modal-cta">
-            <span>Have a project in mind?</span>
-            <a href="#contact" onClick={onClose}>
-              Let's build it
-              <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-
           <div className="modal-nav">
             <button type="button" onClick={onPrev}>
               <span aria-hidden="true">←</span> Previous project

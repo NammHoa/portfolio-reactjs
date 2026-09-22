@@ -25,12 +25,12 @@ function withViewTransition(el, updateFn) {
 const PROJECTS = [
   {
     index: '01',
-    name: 'Grade 10 Enrollment System',
+    name: 'Grade 10 Enrollment Registration System',
     role: 'Fullstack Developer · Team of 2',
     period: 'Jun 2026 – Aug 2026',
     headlineLines: ['Enrollment,', 'without the chaos.'],
     description:
-      'A full-stack registration platform for THPT Ham Thuan Nam, handling 600+ students with dynamic subject-combination logic, real-time status tracking, and an asynchronous email queue for automated confirmations.',
+      'A full-stack registration for THPT Ham Thuan Nam, handling 600+ students with dynamic subject-combination logic, real-time status tracking, and an asynchronous email queue for automated confirmations.',
     highlights: [
       'Admin dashboard with Chart.js analytics',
       'Excel import/export via PhpSpreadsheet',
@@ -48,7 +48,7 @@ const PROJECTS = [
     period: 'Feb 2026 – Jun 2026',
     headlineLines: ['Commerce,', 'secured end to end.'],
     description:
-      'An e-commerce platform covering product management, order processing, and user authentication, with MoMo Payment Gateway integrated for real-time transaction confirmation.',
+      'An e-commercecovering product management, order processing, and user authentication, with MoMo Payment Gateway integrated for real-time transaction confirmation.',
     highlights: [
       'HMAC-SHA256 signed MoMo payments with async IPN webhook handling',
       'Firebase Storage, Stringee Voice OTP, and JavaMail integrations',
@@ -73,7 +73,7 @@ const PROJECTS = [
       'Real-time data synchronization with change-log auditing',
     ],
     tags: ['Flutter', 'Node.js', 'Firebase'],
-    link: 'https://leaderp.vn/',
+    link: 'https://leaderp.vn/',  
     logo: leadLogo,
     company: 'Lead Management Solutions',
   },

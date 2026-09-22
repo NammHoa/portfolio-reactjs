@@ -69,16 +69,6 @@
   opacity: 0.85;
 }
 
-.hero__btn-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--text-h);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  font-size: 15px;
-  font-weight: 500;
-}
 
 .hero__visual {
   position: relative;

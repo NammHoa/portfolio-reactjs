@@ -24,12 +24,13 @@
 
 .skills__grid {
   margin-top: 48px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  columns: 3;
+  column-gap: 32px;
 }
 
 .skills__group {
+  break-inside: avoid;
+  margin-bottom: 32px;
   padding-top: 20px;
   border-top: 1px solid var(--border);
 }
@@ -58,7 +59,7 @@
 
 @media (max-width: 900px) {
   .skills__grid {
-    grid-template-columns: repeat(2, 1fr);
+    columns: 2;
   }
 
   .skills__intro {
@@ -68,7 +69,7 @@
 
 @media (max-width: 560px) {
   .skills__grid {
-    grid-template-columns: 1fr;
+    columns: 1;
   }
 
   .skills {

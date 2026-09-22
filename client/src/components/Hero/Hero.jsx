@@ -31,10 +31,6 @@ function Hero() {
               Explore my work
               <span aria-hidden="true">↗</span>
             </a>
-            <a href="#contact" className="hero__btn-link">
-              Have a project in mind?
-              <span aria-hidden="true">↗</span>
-            </a>
           </div>
         </div>
 
