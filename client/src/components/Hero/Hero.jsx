@@ -10,7 +10,7 @@ function Hero() {
         <div className="hero__content">
           <span className="hero__eyebrow">
             <span className="hero__dot"></span>
-            FULLSTACK ENGINEER
+            ASPIRING FULLSTACK ENGINEER
           </span>
 
           <h1 className="hero__title">
@@ -20,9 +20,10 @@ function Hero() {
           </h1>
 
           <p className="hero__subtitle">
-            I'm Nam — a Software Engineering graduate building full-stack
-            products with React, Node.js, and MongoDB, from the first line
-            of code to the last pixel.
+            I'm Nam, a recent Software Engineering graduate who learns fast
+            and enjoys turning ideas into working products — from a
+            registration system for 600+ students to a payment-integrated
+            e-commerce app.
           </p>
 
           <div className="hero__actions">

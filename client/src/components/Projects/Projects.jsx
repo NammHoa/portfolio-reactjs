@@ -1,5 +1,25 @@
+import { useState } from 'react'
+import { flushSync } from 'react-dom'
 import { useTilt } from '../../hooks/useTilt'
+import { useReveal } from '../../hooks/useReveal'
+import ProjectModal from '../ProjectModal/ProjectModal'
+import grade10Cover from '../../assets/projects/grade10-cover.jpg'
+import sunliesCover from '../../assets/projects/sunilies-cover.jpg'
 import './Projects.css'
+
+function withViewTransition(el, updateFn) {
+  if (!document.startViewTransition || !el) {
+    updateFn()
+    return
+  }
+  el.style.viewTransitionName = 'project-visual'
+  const transition = document.startViewTransition(() => {
+    flushSync(updateFn)
+  })
+  transition.finished.finally(() => {
+    el.style.viewTransitionName = ''
+  })
+}
 
 const PROJECTS = [
   {
@@ -16,7 +36,9 @@ const PROJECTS = [
       'BCrypt hashing, CSRF protection, brute-force rate limiting, and SQL-injection-safe prepared statements',
     ],
     tags: ['PHP 8.1', 'MySQL', 'HTML/CSS', 'JavaScript'],
-    link: 'nguyenvong.thpthtn',
+    link: 'https://nguyenvong.thpthamthuannam.edu.vn/',
+    image: grade10Cover,
+    imageAspect: '380 / 198',
   },
   {
     index: '02',
@@ -32,7 +54,9 @@ const PROJECTS = [
       'Session-fixation prevention, brute-force rate limiting, and XSS sanitization',
     ],
     tags: ['Spring Boot', 'Thymeleaf', 'Firebase', 'MoMo API'],
-    link: 'sunilies',
+    link: 'https://sunilies.vn/',
+    image: sunliesCover,
+    imageAspect: '1024 / 487',
   },
   {
     index: '03',
@@ -52,8 +76,121 @@ const PROJECTS = [
   },
 ]
 
+function ProjectRow({ project, index, reverse, onOpen, tilt }) {
+  const { ref, isVisible, direction } = useReveal()
+
+  const classes = [
+    'project',
+    reverse ? 'project--reverse' : '',
+    isVisible ? 'project--visible' : `project--hidden-${direction}`,
+  ].join(' ')
+
+  return (
+    <article
+      ref={ref}
+      className={classes}
+      style={{ '--reveal-delay': `${index * 0.08}s` }}
+    >
+      <div
+        className="project__visual-frame"
+        aria-hidden="true"
+        onMouseMove={tilt.onMouseMove}
+        onMouseLeave={tilt.onMouseLeave}
+      >
+        <div
+          className="project__visual"
+          ref={tilt.innerRef}
+          style={project.imageAspect ? { aspectRatio: project.imageAspect } : undefined}
+        >
+          {project.image ? (
+            <img
+              src={project.image}
+              alt={`${project.name} preview`}
+              className="project__visual-img"
+            />
+          ) : (
+            <>
+              <span className="project__visual-index">{project.index}</span>
+              <span className="project__visual-name">{project.name}</span>
+            </>
+          )}
+        </div>
+      </div>
+
+      <div className="project__content">
+        <div className="project__top">
+          <span className="project__index">{project.index}</span>
+          <span className="project__role">{project.role}</span>
+          <span className="project__period">{project.period}</span>
+        </div>
+
+        <h3 className="project__headline">
+          {project.headlineLines.map((line) => (
+            <span key={line}>
+              {line}
+              <br />
+            </span>
+          ))}
+        </h3>
+
+        <p className="project__description">{project.description}</p>
+
+        <ul className="project__highlights">
+          {project.highlights.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
+
+        <div className="project__tags">
+          {project.tags.map((tag) => (
+            <span key={tag} className="project__tag">
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="project__footer">
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noreferrer"
+              className="project__link"
+            >
+              Live site
+              <span aria-hidden="true">↗</span>
+            </a>
+          )}
+          <button
+            type="button"
+            className="project__details-btn"
+            onClick={onOpen}
+          >
+            Explore the details
+            <span aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  )
+}
+
 function Projects() {
   const tilts = [useTilt(8), useTilt(8), useTilt(8)]
+  const [openIndex, setOpenIndex] = useState(null)
+
+  const openProject = (i) => {
+    withViewTransition(tilts[i].innerRef.current, () => setOpenIndex(i))
+  }
+  const closeModal = () => {
+    const activeVisual =
+      openIndex !== null ? tilts[openIndex].innerRef.current : null
+    withViewTransition(activeVisual, () => setOpenIndex(null))
+  }
+  const showPrev = () =>
+    setOpenIndex((current) => (current - 1 + PROJECTS.length) % PROJECTS.length)
+  const showNext = () =>
+    setOpenIndex((current) => (current + 1) % PROJECTS.length)
 
   return (
     <section className="projects" id="projects">
@@ -70,61 +207,25 @@ function Projects() {
 
       <div className="projects__list">
         {PROJECTS.map((project, i) => (
-          <article
+          <ProjectRow
             key={project.name}
-            className={`project ${i % 2 === 1 ? 'project--reverse' : ''}`}
-          >
-            <div
-              className="project__visual-frame"
-              aria-hidden="true"
-              onMouseMove={tilts[i].onMouseMove}
-              onMouseLeave={tilts[i].onMouseLeave}
-            >
-              <div className="project__visual" ref={tilts[i].innerRef}>
-                <span className="project__visual-index">{project.index}</span>
-                <span className="project__visual-name">{project.name}</span>
-              </div>
-            </div>
-
-            <div className="project__content">
-              <div className="project__top">
-                <span className="project__index">{project.index}</span>
-                <span className="project__role">{project.role}</span>
-                <span className="project__period">{project.period}</span>
-              </div>
-
-              <h3 className="project__headline">
-                {project.headlineLines.map((line) => (
-                  <span key={line}>
-                    {line}
-                    <br />
-                  </span>
-                ))}
-              </h3>
-
-              <p className="project__description">{project.description}</p>
-
-              <ul className="project__highlights">
-                {project.highlights.map((point) => (
-                  <li key={point}>{point}</li>
-                ))}
-              </ul>
-
-              <div className="project__tags">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="project__tag">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {project.link && (
-                <span className="project__link">Live: {project.link}</span>
-              )}
-            </div>
-          </article>
+            project={project}
+            index={i}
+            reverse={i % 2 === 1}
+            tilt={tilts[i]}
+            onOpen={() => openProject(i)}
+          />
         ))}
       </div>
+
+      {openIndex !== null && (
+        <ProjectModal
+          project={PROJECTS[openIndex]}
+          onClose={closeModal}
+          onPrev={showPrev}
+          onNext={showNext}
+        />
+      )}
     </section>
   )
 }
