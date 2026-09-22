@@ -5,6 +5,7 @@ import { useReveal } from '../../hooks/useReveal'
 import ProjectModal from '../ProjectModal/ProjectModal'
 import grade10Cover from '../../assets/projects/grade10-cover.jpg'
 import sunliesCover from '../../assets/projects/sunilies-cover.jpg'
+import leadLogo from '../../assets/projects/lead-logo.png'
 import './Projects.css'
 
 function withViewTransition(el, updateFn) {
@@ -38,7 +39,7 @@ const PROJECTS = [
     tags: ['PHP 8.1', 'MySQL', 'HTML/CSS', 'JavaScript'],
     link: 'https://nguyenvong.thpthamthuannam.edu.vn/',
     image: grade10Cover,
-    imageAspect: '380 / 198',
+    imageAspect: '1024 / 489',
   },
   {
     index: '02',
@@ -72,7 +73,9 @@ const PROJECTS = [
       'Real-time data synchronization with change-log auditing',
     ],
     tags: ['Flutter', 'Node.js', 'Firebase'],
-    link: null,
+    link: 'https://leaderp.vn/',
+    logo: leadLogo,
+    company: 'Lead Management Solutions',
   },
 ]
 
@@ -108,6 +111,15 @@ function ProjectRow({ project, index, reverse, onOpen, tilt }) {
               alt={`${project.name} preview`}
               className="project__visual-img"
             />
+          ) : project.logo ? (
+            <div className="project__visual-logo-wrap">
+              <img
+                src={project.logo}
+                alt={`${project.company} logo`}
+                className="project__visual-logo"
+              />
+              <span className="project__visual-company">{project.company}</span>
+            </div>
           ) : (
             <>
               <span className="project__visual-index">{project.index}</span>
@@ -157,7 +169,7 @@ function ProjectRow({ project, index, reverse, onOpen, tilt }) {
               rel="noreferrer"
               className="project__link"
             >
-              Live site
+              {project.company ? 'Company site' : 'Live site'}
               <span aria-hidden="true">↗</span>
             </a>
           )}

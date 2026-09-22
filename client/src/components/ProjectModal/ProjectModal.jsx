@@ -48,6 +48,15 @@ function ProjectModal({ project, onClose, onPrev, onNext }) {
               alt={`${project.name} preview`}
               className="modal-visual-img"
             />
+          ) : project.logo ? (
+            <div className="modal-visual-logo-wrap">
+              <img
+                src={project.logo}
+                alt={`${project.company} logo`}
+                className="modal-visual-logo"
+              />
+              <span className="modal-visual-company">{project.company}</span>
+            </div>
           ) : (
             <>
               <span className="modal-visual-index">{project.index}</span>
@@ -98,7 +107,7 @@ function ProjectModal({ project, onClose, onPrev, onNext }) {
               rel="noreferrer"
               className="modal-link"
             >
-              Visit live site
+              {project.company ? 'Visit company site' : 'Visit live site'}
               <span aria-hidden="true">↗</span>
             </a>
           )}

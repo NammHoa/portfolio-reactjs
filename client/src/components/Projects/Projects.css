@@ -109,6 +109,42 @@
   object-fit: cover;
 }
 
+.project__visual-logo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.project__visual-logo {
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(20, 33, 15, 0.2));
+}
+
+.project__visual-company {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-h);
+  text-align: center;
+  padding: 0 24px;
+}
+
+.project__visual-nda {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
 .project__visual-name {
   font-size: 15px;
   font-weight: 600;
