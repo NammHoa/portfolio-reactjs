@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import './ProjectModal.css'
 
-function ProjectModal({ project, onClose, onPrev, onNext }) {
+function ProjectModal({ project, total, onClose, onPrev, onNext }) {
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
@@ -67,7 +67,9 @@ function ProjectModal({ project, onClose, onPrev, onNext }) {
 
         <div className="modal-details">
           <div className="modal-top">
-            <span className="modal-index">{project.index} / 03</span>
+            <span className="modal-index">
+              {project.index} / {total}
+            </span>
             <span className="modal-role">
               {project.role} · {project.period}
             </span>
@@ -100,16 +102,33 @@ function ProjectModal({ project, onClose, onPrev, onNext }) {
             ))}
           </div>
 
-          {project.link && (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noreferrer"
-              className="modal-link"
-            >
-              {project.company ? 'Visit company site' : 'Visit live site'}
-              <span aria-hidden="true">↗</span>
-            </a>
+          {project.links ? (
+            <div className="modal-links-group">
+              {project.links.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="modal-link"
+                >
+                  {link.label}
+                  <span aria-hidden="true">↗</span>
+                </a>
+              ))}
+            </div>
+          ) : (
+            project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noreferrer"
+                className="modal-link"
+              >
+                {project.linkLabel || (project.company ? 'Visit company site' : 'Visit live site')}
+                <span aria-hidden="true">↗</span>
+              </a>
+            )
           )}
 
           <div className="modal-nav">

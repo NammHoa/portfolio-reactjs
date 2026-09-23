@@ -26,7 +26,7 @@ function Contact() {
   return (
     <section className="contact" id="contact">
       <div className="contact__meta">
-        <span>04 / CONTACT</span>
+        <span>05 / CONTACT</span>
         <span>LET'S TALK</span>
       </div>
 

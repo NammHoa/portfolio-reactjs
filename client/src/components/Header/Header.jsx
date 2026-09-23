@@ -3,7 +3,8 @@ import './Header.css'
 
 const NAV_LINKS = [
   { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
+  { label: 'Experience', href: '#projects' },
+  { label: 'Projects', href: '#portfolio' },
   { label: 'Skills', href: '#skills' },
 ]
 

@@ -237,6 +237,16 @@
   text-decoration: underline;
 }
 
+.project__links-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.project__links-group .project__link {
+  margin: 0;
+}
+
 .project__details-btn {
   display: inline-flex;
   align-items: center;

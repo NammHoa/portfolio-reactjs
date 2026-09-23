@@ -27,7 +27,7 @@ function Skills() {
   return (
     <section className="skills" id="skills">
       <div className="skills__meta">
-        <span>03 / SKILLS</span>
+        <span>04 / SKILLS</span>
         <span>WHAT I WORK WITH</span>
       </div>
 
