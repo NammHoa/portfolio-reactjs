@@ -60,7 +60,7 @@ const RAW_PROJECTS = [
     period: 'May 2025 – July 2025',
     headlineLines: ['Bookstore,', 'in your pocket.'],
     description:
-      'A cross-platform mobile app for browsing and buying books, backed by a RESTful API with real-time payments and full inventory logic — built end-to-end from scratch.',
+      'A mobile app for browsing and buying books, backed by a RESTful API with real-time payments and full inventory logic — built end-to-end from scratch.',
     highlights: [
       'State Management: Utilized Provider to ensure smooth UI performance and efficient data handling.',
       'Payment Integration: Integrated MoMo API for secure, real-time online transactions.',
@@ -76,7 +76,7 @@ const RAW_PROJECTS = [
     period: 'November 2024 – March 2025',
     headlineLines: ['Electronics,', 'sold online.'],
     description:
-      'An independently built e-commerce platform for electronic devices, covering the full stack from product catalog and cart to secure checkout and order management.',
+      'An independently built e-commerce for electronic devices, covering the full stack from product catalog and cart to secure checkout and order management.',
     highlights: [
       'State Management: Leveraged Redux for efficient and predictable state management across the application.',
       'API & Backend: Implemented RESTful APIs with Express.js to manage products, user accounts, and order processing.',

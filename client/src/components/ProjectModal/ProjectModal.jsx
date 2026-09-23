@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
+import '../Projects/Projects.css'
 import './ProjectModal.css'
 
 function ProjectModal({ project, total, onClose, onPrev, onNext }) {
+  const hasVisual = Boolean(project.image || project.logo)
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
@@ -22,7 +24,7 @@ function ProjectModal({ project, total, onClose, onPrev, onNext }) {
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div
-        className="modal-panel"
+        className={`modal-panel ${hasVisual ? '' : 'modal-panel--text-only'}`}
         role="dialog"
         aria-modal="true"
         aria-label={project.name}
@@ -37,35 +39,34 @@ function ProjectModal({ project, total, onClose, onPrev, onNext }) {
           ×
         </button>
 
-        <div
-          className="modal-visual"
-          style={{ viewTransitionName: 'project-visual' }}
-          aria-hidden="true"
-        >
-          {project.image ? (
-            <img
-              src={project.image}
-              alt={`${project.name} preview`}
-              className="modal-visual-img"
-            />
-          ) : project.logo ? (
-            <div className="modal-visual-logo-wrap">
+        {hasVisual && (
+          <div className="modal-visual" aria-hidden="true">
+            {project.image ? (
               <img
-                src={project.logo}
-                alt={`${project.company} logo`}
-                className="modal-visual-logo"
+                src={project.image}
+                alt={`${project.name} preview`}
+                className="modal-visual-img"
               />
-              <span className="modal-visual-company">{project.company}</span>
-            </div>
-          ) : (
-            <>
-              <span className="modal-visual-index">{project.index}</span>
-              <span className="modal-visual-name">{project.name}</span>
-            </>
-          )}
-        </div>
+            ) : (
+              <div className="modal-visual-logo-wrap">
+                <img
+                  src={project.logo}
+                  alt={`${project.company} logo`}
+                  className="modal-visual-logo"
+                />
+                <span className="modal-visual-company">{project.company}</span>
+              </div>
+            )}
+          </div>
+        )}
 
         <div className="modal-details">
+          {!hasVisual && (
+            <span className="modal-ghost-index" aria-hidden="true">
+              {project.index}
+            </span>
+          )}
+
           <div className="modal-top">
             <span className="modal-index">
               {project.index} / {total}

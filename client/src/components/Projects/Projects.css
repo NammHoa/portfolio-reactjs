@@ -136,6 +136,35 @@
   padding: 0 24px;
 }
 
+.project--text-only {
+  grid-template-columns: 1fr;
+}
+
+.project--text-only .project__content {
+  position: relative;
+  max-width: 640px;
+}
+
+.project__ghost-index {
+  position: absolute;
+  top: -12px;
+  right: 0;
+  font-size: 110px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -4px;
+  color: var(--accent);
+  opacity: 0.07;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 900px) {
+  .project__ghost-index {
+    font-size: 80px;
+  }
+}
+
 .project__top {
   display: flex;
   align-items: center;

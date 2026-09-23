@@ -3,10 +3,12 @@ import '../Projects/Projects.css'
 
 function ProjectRow({ project, delayIndex, reverse, onOpen, tilt }) {
   const { ref, isVisible, direction } = useReveal()
+  const hasVisual = Boolean(project.image || project.logo)
 
   const classes = [
     'project',
     reverse ? 'project--reverse' : '',
+    hasVisual ? '' : 'project--text-only',
     isVisible ? 'project--visible' : `project--hidden-${direction}`,
   ].join(' ')
 
@@ -16,43 +18,46 @@ function ProjectRow({ project, delayIndex, reverse, onOpen, tilt }) {
       className={classes}
       style={{ '--reveal-delay': `${delayIndex * 0.08}s` }}
     >
-      <div
-        className="project__visual-frame"
-        aria-hidden="true"
-        onMouseMove={tilt.onMouseMove}
-        onMouseLeave={tilt.onMouseLeave}
-        onClick={onOpen}
-      >
+      {hasVisual && (
         <div
-          className="project__visual"
-          ref={tilt.innerRef}
-          style={project.imageAspect ? { aspectRatio: project.imageAspect } : undefined}
+          className="project__visual-frame"
+          aria-hidden="true"
+          onMouseMove={tilt.onMouseMove}
+          onMouseLeave={tilt.onMouseLeave}
+          onClick={onOpen}
         >
-          {project.image ? (
-            <img
-              src={project.image}
-              alt={`${project.name} preview`}
-              className="project__visual-img"
-            />
-          ) : project.logo ? (
-            <div className="project__visual-logo-wrap">
+          <div
+            className="project__visual"
+            ref={tilt.innerRef}
+            style={project.imageAspect ? { aspectRatio: project.imageAspect } : undefined}
+          >
+            {project.image ? (
               <img
-                src={project.logo}
-                alt={`${project.company} logo`}
-                className="project__visual-logo"
+                src={project.image}
+                alt={`${project.name} preview`}
+                className="project__visual-img"
               />
-              <span className="project__visual-company">{project.company}</span>
-            </div>
-          ) : (
-            <>
-              <span className="project__visual-index">{project.index}</span>
-              <span className="project__visual-name">{project.name}</span>
-            </>
-          )}
+            ) : (
+              <div className="project__visual-logo-wrap">
+                <img
+                  src={project.logo}
+                  alt={`${project.company} logo`}
+                  className="project__visual-logo"
+                />
+                <span className="project__visual-company">{project.company}</span>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="project__content">
+        {!hasVisual && (
+          <span className="project__ghost-index" aria-hidden="true">
+            {project.index}
+          </span>
+        )}
+
         <div className="project__top">
           <span className="project__index">{project.index}</span>
           <span className="project__role">{project.role}</span>

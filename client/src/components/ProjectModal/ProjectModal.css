@@ -118,6 +118,25 @@
 
 .modal-details {
   padding: 48px;
+  position: relative;
+}
+
+.modal-panel--text-only {
+  grid-template-columns: 1fr;
+}
+
+.modal-ghost-index {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  font-size: 120px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -4px;
+  color: var(--accent);
+  opacity: 0.07;
+  pointer-events: none;
+  user-select: none;
 }
 
 .modal-top {
@@ -270,9 +289,4 @@
   .modal-headline {
     font-size: 28px;
   }
-}
-
-::view-transition-group(project-visual) {
-  animation-duration: 0.45s;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
