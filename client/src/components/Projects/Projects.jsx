@@ -1,10 +1,9 @@
 import { useProjectModal } from '../../context/ProjectModalContext'
-import { EXPERIENCE_PROJECTS } from '../../data/projects'
 import ProjectRow from '../ProjectRow/ProjectRow'
 import './Projects.css'
 
 function Projects() {
-  const { tilts, openAt } = useProjectModal()
+  const { experienceProjects, loading, error, openAt } = useProjectModal()
 
   return (
     <section className="projects" id="projects">
@@ -13,18 +12,26 @@ function Projects() {
         <span>2025 — 2026</span>
       </div>
 
-      <div className="projects__list">
-        {EXPERIENCE_PROJECTS.map((project, i) => (
-          <ProjectRow
-            key={project.name}
-            project={project}
-            delayIndex={i}
-            reverse={i % 2 === 1}
-            tilt={tilts[i]}
-            onOpen={() => openAt(i)}
-          />
-        ))}
-      </div>
+      {loading && <p className="projects__status">Loading projects…</p>}
+      {error && (
+        <p className="projects__status projects__status--error">
+          Couldn't load projects. Please try again later.
+        </p>
+      )}
+
+      {!loading && !error && (
+        <div className="projects__list">
+          {experienceProjects.map((project, i) => (
+            <ProjectRow
+              key={project._id}
+              project={project}
+              delayIndex={i}
+              reverse={i % 2 === 1}
+              onOpen={() => openAt(project._id)}
+            />
+          ))}
+        </div>
+      )}
     </section>
   )
 }

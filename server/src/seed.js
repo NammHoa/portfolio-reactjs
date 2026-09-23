@@ -21,6 +21,7 @@ const PROJECTS = [
     tags: ['PHP 8.1', 'MySQL', 'HTML/CSS', 'JavaScript'],
     link: 'https://nguyenvong.thpthamthuannam.edu.vn/',
     imageAspect: '1024 / 489',
+    category: 'experience',
     order: 1,
   },
   {
@@ -38,6 +39,7 @@ const PROJECTS = [
     tags: ['Spring Boot', 'Thymeleaf', 'Firebase', 'MoMo API'],
     link: 'https://sunilies.vn/',
     imageAspect: '1024 / 487',
+    category: 'experience',
     order: 2,
   },
   {
@@ -55,6 +57,7 @@ const PROJECTS = [
     tags: ['Flutter', 'Node.js', 'Firebase'],
     link: 'https://leaderp.vn/',
     company: 'Lead Management Solutions',
+    category: 'experience',
     order: 3,
   },
   {
@@ -72,6 +75,7 @@ const PROJECTS = [
     tags: ['Flutter', 'ASP.NET Core API', 'SQL Server', 'MoMo Payment'],
     link: 'https://github.com/NammHoa/Viren',
     linkLabel: 'Github',
+    category: 'project',
     order: 4,
   },
   {
@@ -92,6 +96,7 @@ const PROJECTS = [
       { label: 'Frontend', href: 'https://github.com/NammHoa/TheGioiJack' },
       { label: 'Backend', href: 'https://github.com/NammHoa/TheGioiJack_be' },
     ],
+    category: 'project',
     order: 5,
   },
 ]

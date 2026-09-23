@@ -24,6 +24,7 @@ const projectSchema = new mongoose.Schema(
     imageAspect: String,
     logo: String,
     company: String,
+    category: { type: String, enum: ['experience', 'project'], required: true },
     order: { type: Number, required: true },
   },
   { timestamps: true }

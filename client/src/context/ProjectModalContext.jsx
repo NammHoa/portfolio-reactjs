@@ -1,27 +1,62 @@
-import { createContext, useContext, useState } from 'react'
-import { useTilt } from '../hooks/useTilt'
+import { createContext, useContext, useEffect, useState } from 'react'
 import ProjectModal from '../components/ProjectModal/ProjectModal'
-import { ALL_PROJECTS } from '../data/projects'
+import { getProjects } from '../lib/api'
+import { PROJECT_ASSETS } from '../data/projectAssets'
 
 const ProjectModalContext = createContext(null)
 
 export function ProjectModalProvider({ children }) {
-  const tilts = [useTilt(8), useTilt(8), useTilt(8), useTilt(8), useTilt(8)]
+  const [projects, setProjects] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [openIndex, setOpenIndex] = useState(null)
 
-  const openAt = (i) => setOpenIndex(i)
+  useEffect(() => {
+    let ignore = false
+
+    getProjects()
+      .then((data) => {
+        if (ignore) return
+        const merged = data.map((project, i) => ({
+          ...project,
+          ...PROJECT_ASSETS[project.name],
+          index: String(i + 1).padStart(2, '0'),
+        }))
+        setProjects(merged)
+      })
+      .catch((err) => {
+        if (!ignore) setError(err.message)
+      })
+      .finally(() => {
+        if (!ignore) setLoading(false)
+      })
+
+    return () => {
+      ignore = true
+    }
+  }, [])
+
+  const experienceProjects = projects.filter((p) => p.category === 'experience')
+  const portfolioProjects = projects.filter((p) => p.category === 'project')
+
+  const openAt = (id) => {
+    const idx = projects.findIndex((p) => p._id === id)
+    if (idx !== -1) setOpenIndex(idx)
+  }
   const close = () => setOpenIndex(null)
   const prev = () =>
-    setOpenIndex((current) => (current - 1 + ALL_PROJECTS.length) % ALL_PROJECTS.length)
-  const next = () => setOpenIndex((current) => (current + 1) % ALL_PROJECTS.length)
+    setOpenIndex((current) => (current - 1 + projects.length) % projects.length)
+  const next = () => setOpenIndex((current) => (current + 1) % projects.length)
 
   return (
-    <ProjectModalContext.Provider value={{ tilts, openAt }}>
+    <ProjectModalContext.Provider
+      value={{ experienceProjects, portfolioProjects, loading, error, openAt }}
+    >
       {children}
       {openIndex !== null && (
         <ProjectModal
-          project={ALL_PROJECTS[openIndex]}
-          total={ALL_PROJECTS.length}
+          project={projects[openIndex]}
+          total={projects.length}
           onClose={close}
           onPrev={prev}
           onNext={next}

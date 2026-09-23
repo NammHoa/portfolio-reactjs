@@ -1,8 +1,10 @@
 import { useReveal } from '../../hooks/useReveal'
+import { useTilt } from '../../hooks/useTilt'
 import '../Projects/Projects.css'
 
-function ProjectRow({ project, delayIndex, reverse, onOpen, tilt }) {
+function ProjectRow({ project, delayIndex, reverse, onOpen }) {
   const { ref, isVisible, direction } = useReveal()
+  const tilt = useTilt(8)
   const hasVisual = Boolean(project.image || project.logo)
 
   const classes = [
