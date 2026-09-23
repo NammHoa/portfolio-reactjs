@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Header.css'
 
 const NAV_LINKS = [
@@ -10,12 +10,30 @@ const NAV_LINKS = [
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const ENTER_THRESHOLD = 80
+    const EXIT_THRESHOLD = 40
+
+    const handleScroll = () => {
+      const y = window.scrollY
+      setIsScrolled((current) => {
+        if (current) return y > EXIT_THRESHOLD
+        return y > ENTER_THRESHOLD
+      })
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const closeMenu = () => setIsMenuOpen(false)
 
   return (
     <header className="header">
-      <div className="header__inner">
+      <div className={`header__inner ${isScrolled ? 'header__inner--scrolled' : ''}`}>
         <a href="#top" className="header__logo" onClick={closeMenu}>
           .HN
         </a>
