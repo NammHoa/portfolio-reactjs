@@ -1,3 +1,4 @@
+import { useReveal } from '../../hooks/useReveal'
 import './Skills.css'
 
 const SKILL_GROUPS = [
@@ -24,8 +25,15 @@ const SKILL_GROUPS = [
 ]
 
 function Skills() {
+  const { ref, isVisible, direction } = useReveal()
+  const classes = [
+    'skills',
+    'reveal',
+    isVisible ? 'reveal--visible' : `reveal--hidden-${direction}`,
+  ].join(' ')
+
   return (
-    <section className="skills" id="skills">
+    <section ref={ref} className={classes} id="skills">
       <div className="skills__meta">
         <span>04 / SKILLS</span>
         <span>WHAT I WORK WITH</span>

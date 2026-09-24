@@ -39,3 +39,33 @@ p {
 a {
   color: inherit;
 }
+
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s);
+}
+
+.reveal--hidden-up {
+  transform: translateY(32px);
+}
+
+.reveal--hidden-down {
+  transform: translateY(-32px);
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal--hidden-up,
+  .reveal--hidden-down {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

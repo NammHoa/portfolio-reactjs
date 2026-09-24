@@ -1,4 +1,5 @@
 import avatar from '../../assets/avatar.jpg'
+import { useReveal } from '../../hooks/useReveal'
 import './About.css'
 
 const EDUCATION = [
@@ -9,8 +10,15 @@ const EDUCATION = [
 ]
 
 function About() {
+  const { ref, isVisible, direction } = useReveal()
+  const classes = [
+    'about',
+    'reveal',
+    isVisible ? 'reveal--visible' : `reveal--hidden-${direction}`,
+  ].join(' ')
+
   return (
-    <section className="about" id="about">
+    <section ref={ref} className={classes} id="about">
       <div className="about__meta">
         <span>01 / ABOUT</span>
         <span>WHO I AM</span>

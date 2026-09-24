@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { IconMail, IconPhone, IconGithub } from './icons'
 import { sendContactMessage } from '../../lib/api'
+import { useReveal } from '../../hooks/useReveal'
 import './Contact.css'
 
 const CONTACT_LINKS = [
@@ -30,6 +31,12 @@ function Contact() {
   const [formData, setFormData] = useState(EMPTY_FORM)
   const [status, setStatus] = useState('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const { ref, isVisible, direction } = useReveal()
+  const classes = [
+    'contact',
+    'reveal',
+    isVisible ? 'reveal--visible' : `reveal--hidden-${direction}`,
+  ].join(' ')
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -52,7 +59,7 @@ function Contact() {
   }
 
   return (
-    <section className="contact" id="contact">
+    <section ref={ref} className={classes} id="contact">
       <div className="contact__meta">
         <span>05 / CONTACT</span>
         <span>LET'S TALK</span>
