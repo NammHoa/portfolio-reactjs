@@ -132,16 +132,17 @@
     align-items: flex-start;
     gap: 4px;
     padding: 16px 24px 24px;
-    transform: translateY(-8px);
-    opacity: 0;
+    transform: translateY(-100%);
+    visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0.28s;
   }
 
   .header__nav--open {
     transform: translateY(0);
-    opacity: 1;
+    visibility: visible;
     pointer-events: auto;
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .header__nav a {
