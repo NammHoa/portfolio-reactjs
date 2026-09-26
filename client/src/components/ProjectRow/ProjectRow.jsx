@@ -54,12 +54,6 @@ function ProjectRow({ project, delayIndex, reverse, onOpen }) {
       )}
 
       <div className="project__content">
-        {!hasVisual && (
-          <span className="project__ghost-index" aria-hidden="true">
-            {project.index}
-          </span>
-        )}
-
         <div className="project__top">
           <span className="project__index">{project.index}</span>
           <span className="project__role">{project.role}</span>
