@@ -98,6 +98,18 @@
   cursor: pointer;
 }
 
+.hero__scene3d {
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 4 / 3;
+}
+
+.hero__scene3d canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 .code-window {
   width: 100%;
   max-width: 380px;
@@ -161,47 +173,6 @@
   opacity: 0.6;
 }
 
-.hero__badge {
-  position: absolute;
-  top: -18px;
-  right: 24px;
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  background: var(--accent);
-  color: var(--bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: 700;
-  box-shadow: 0 12px 24px -8px rgba(20, 33, 15, 0.35);
-  animation: badgeWiggle 3s ease-in-out infinite;
-}
-
-@keyframes badgeWiggle {
-  0%,
-  100% {
-    transform: rotate(-8deg);
-  }
-  50% {
-    transform: rotate(-2deg);
-  }
-}
-
-.hero__footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 0 40px;
-  margin-top: 40px;
-  border-top: 1px solid var(--border);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--text);
-}
-
 @media (max-width: 900px) {
   .hero__inner {
     grid-template-columns: 1fr;
@@ -238,8 +209,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__float,
-  .hero__badge {
+  .hero__float {
     animation: none;
   }
 }

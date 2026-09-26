@@ -1,8 +1,36 @@
+import { Suspense, lazy } from 'react'
 import { useTilt } from '../../hooks/useTilt'
+import { useCanShow3D } from '../../hooks/useCanShow3D'
 import './Hero.css'
 
-function Hero() {
+const Scene3D = lazy(() => import('./Scene3D'))
+
+function CodeWindowFallback() {
   const { innerRef, onMouseMove, onMouseLeave } = useTilt(10)
+
+  return (
+    <div className="code-window-frame" onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}>
+      <div className="code-window" ref={innerRef}>
+        <div className="code-window__bar">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div className="code-window__body">
+          <div className="code-line code-line--tag" style={{ width: '40%' }}></div>
+          <div className="code-line" style={{ width: '70%' }}></div>
+          <div className="code-line code-line--indent" style={{ width: '55%' }}></div>
+          <div className="code-line code-line--indent code-line--accent" style={{ width: '35%' }}></div>
+          <div className="code-line" style={{ width: '60%' }}></div>
+          <div className="code-line code-line--tag" style={{ width: '30%' }}></div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function Hero() {
+  const canShow3D = useCanShow3D()
 
   return (
     <section className="hero" id="home">
@@ -36,36 +64,15 @@ function Hero() {
 
         <div className="hero__visual" aria-hidden="true">
           <div className="hero__float">
-            <div
-              className="code-window-frame"
-              onMouseMove={onMouseMove}
-              onMouseLeave={onMouseLeave}
-            >
-              <div className="code-window" ref={innerRef}>
-                <div className="code-window__bar">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-                <div className="code-window__body">
-                  <div className="code-line code-line--tag" style={{ width: '40%' }}></div>
-                  <div className="code-line" style={{ width: '70%' }}></div>
-                  <div className="code-line code-line--indent" style={{ width: '55%' }}></div>
-                  <div className="code-line code-line--indent code-line--accent" style={{ width: '35%' }}></div>
-                  <div className="code-line" style={{ width: '60%' }}></div>
-                  <div className="code-line code-line--tag" style={{ width: '30%' }}></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="hero__badge">
-            <span>&lt;/&gt;</span>
+            {canShow3D ? (
+              <Suspense fallback={<CodeWindowFallback />}>
+                <Scene3D />
+              </Suspense>
+            ) : (
+              <CodeWindowFallback />
+            )}
           </div>
         </div>
-      </div>
-
-      <div className="hero__footer">
-        <span>VIETNAM → REMOTE</span>
       </div>
     </section>
   )
