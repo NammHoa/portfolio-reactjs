@@ -4,10 +4,37 @@ import { getProjects } from '../lib/api'
 import { PROJECT_ASSETS } from '../data/projectAssets'
 
 const ProjectModalContext = createContext(null)
+const CACHE_KEY = 'portfolio:projects:v1'
+
+function mergeProjects(data) {
+  return data.map((project, i) => ({
+    ...project,
+    ...PROJECT_ASSETS[project.name],
+    index: String(i + 1).padStart(2, '0'),
+  }))
+}
+
+function readCache() {
+  try {
+    const raw = localStorage.getItem(CACHE_KEY)
+    return raw ? JSON.parse(raw) : null
+  } catch {
+    return null
+  }
+}
+
+function writeCache(data) {
+  try {
+    localStorage.setItem(CACHE_KEY, JSON.stringify(data))
+  } catch {
+    // Storage unavailable (private mode, quota) — safe to skip caching.
+  }
+}
 
 export function ProjectModalProvider({ children }) {
-  const [projects, setProjects] = useState([])
-  const [loading, setLoading] = useState(true)
+  const cached = readCache()
+  const [projects, setProjects] = useState(cached ? mergeProjects(cached) : [])
+  const [loading, setLoading] = useState(!cached)
   const [error, setError] = useState(null)
   const [openIndex, setOpenIndex] = useState(null)
 
@@ -17,15 +44,13 @@ export function ProjectModalProvider({ children }) {
     getProjects()
       .then((data) => {
         if (ignore) return
-        const merged = data.map((project, i) => ({
-          ...project,
-          ...PROJECT_ASSETS[project.name],
-          index: String(i + 1).padStart(2, '0'),
-        }))
-        setProjects(merged)
+        setProjects(mergeProjects(data))
+        writeCache(data)
       })
       .catch((err) => {
-        if (!ignore) setError(err.message)
+        // With cached data already on screen, fail silently in the
+        // background instead of replacing it with an error message.
+        if (!ignore && !cached) setError(err.message)
       })
       .finally(() => {
         if (!ignore) setLoading(false)
