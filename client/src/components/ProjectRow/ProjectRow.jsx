@@ -86,7 +86,7 @@ function ProjectRow({ project, delayIndex, reverse, onOpen }) {
         </div>
 
         <div className="project__footer">
-          {project.links ? (
+          {project.links?.length > 0 ? (
             <div className="project__links-group">
               {project.links.map((link) => (
                 <a

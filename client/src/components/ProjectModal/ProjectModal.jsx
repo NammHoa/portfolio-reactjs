@@ -103,7 +103,7 @@ function ProjectModal({ project, total, onClose, onPrev, onNext }) {
             ))}
           </div>
 
-          {project.links ? (
+          {project.links?.length > 0 ? (
             <div className="modal-links-group">
               {project.links.map((link) => (
                 <a
