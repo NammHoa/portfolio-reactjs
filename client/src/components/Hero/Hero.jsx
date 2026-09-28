@@ -59,6 +59,13 @@ function Hero() {
               Explore my work
               <span aria-hidden="true">↗</span>
             </a>
+            <a
+              href="/Lam-Huynh-Hoa-Nam-CV.pdf"
+              download
+              className="hero__btn-secondary"
+            >
+              Download CV
+            </a>
           </div>
         </div>
 
