@@ -13,9 +13,8 @@ export function useCanShow3D() {
   const [canShow, setCanShow] = useState(false)
 
   useEffect(() => {
-    const isDesktop = window.matchMedia('(min-width: 900px)').matches
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    setCanShow(isDesktop && !reducedMotion && hasWebGL())
+    setCanShow(!reducedMotion && hasWebGL())
   }, [])
 
   return canShow
