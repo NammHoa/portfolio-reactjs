@@ -30,8 +30,8 @@
   margin: 24px auto 0;
   padding: 12px 20px;
   background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 12px 24px -12px rgba(20, 33, 15, 0.28);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-float);
 }
 
 @media (max-width: 900px) {

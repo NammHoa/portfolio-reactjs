@@ -28,7 +28,7 @@
   max-height: 85vh;
   overflow-y: auto;
   background: var(--bg);
-  border-radius: 20px;
+  border-radius: var(--radius-md);
   display: grid;
   grid-template-columns: 1fr 1fr;
   animation: modalFadeIn 0.25s ease;
@@ -66,7 +66,7 @@
   justify-content: center;
   gap: 16px;
   padding: 32px;
-  border-radius: 20px 0 0 20px;
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
   overflow: hidden;
 }
 
@@ -279,7 +279,7 @@
   .modal-visual {
     height: auto;
     aspect-ratio: 4 / 3;
-    border-radius: 20px 20px 0 0;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
   }
 
   .modal-details {

@@ -2,10 +2,10 @@
   width: 100%;
   max-width: 520px;
   aspect-ratio: 4 / 3;
-  border-radius: 28px;
+  border-radius: var(--radius-card);
   overflow: hidden;
   background: var(--color-peach-soft);
-  box-shadow: 0 24px 48px -24px rgba(20, 33, 15, 0.25);
+  box-shadow: var(--shadow-soft);
   cursor: pointer;
 }
 

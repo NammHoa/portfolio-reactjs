@@ -1,7 +1,7 @@
 .projects {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 24px 40px;
+  padding: var(--section-y) var(--section-x) 40px;
 }
 
 .projects__meta {
@@ -83,9 +83,9 @@
 .project__visual-frame {
   perspective: 800px;
   cursor: pointer;
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   clip-path: inset(0 round 16px);
-  box-shadow: 0 20px 40px -16px rgba(20, 33, 15, 0.15);
+  box-shadow: var(--shadow-soft);
 }
 
 .project__visual {

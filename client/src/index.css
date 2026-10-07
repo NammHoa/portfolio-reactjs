@@ -19,8 +19,21 @@
   --color-coral-deep: #b5544a;
   --color-sun: #f7c948;
 
+  /* Radius scale: small controls, tiles, cards, colour blocks. Pills use 999px. */
+  --radius-sm: 14px;
+  --radius-md: 20px;
   --radius-card: 28px;
   --radius-block: 36px;
+
+  /* Two elevation levels: resting cards and floating chrome. */
+  --shadow-soft: 0 20px 40px -20px rgba(20, 33, 15, 0.15);
+  --shadow-float: 0 12px 24px -12px rgba(20, 33, 15, 0.28);
+
+  /* Section rhythm. */
+  --section-y: 80px;
+  --section-x: 24px;
+  --section-y-sm: 56px;
+  --section-x-sm: 20px;
 
   /* Aliases used throughout the component styles. */
   --text: var(--color-text);

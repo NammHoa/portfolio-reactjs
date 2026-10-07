@@ -1,7 +1,7 @@
 .skills {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 24px;
+  padding: var(--section-y) var(--section-x);
 }
 
 .skills__meta {
@@ -68,7 +68,7 @@
   place-items: center;
   width: 58px;
   height: 58px;
-  border-radius: 18px;
+  border-radius: var(--radius-md);
   background: rgba(255, 254, 250, 0.6);
   font-size: 36px;
 }
@@ -118,7 +118,7 @@
 
 @media (max-width: 560px) {
   .skills {
-    padding: 56px 20px;
+    padding: var(--section-y-sm) var(--section-x-sm);
   }
 
   .skills__intro {

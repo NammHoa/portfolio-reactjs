@@ -1,7 +1,7 @@
 .about {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 24px;
+  padding: var(--section-y) var(--section-x);
 }
 
 .about__meta {
@@ -44,9 +44,9 @@
 .about__card {
   background: var(--color-paper);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: var(--radius-card);
   padding: 28px;
-  box-shadow: 0 20px 40px -20px rgba(20, 33, 15, 0.15);
+  box-shadow: var(--shadow-soft);
 }
 
 .about__card-header {
@@ -64,7 +64,7 @@
   height: 144px;
   object-fit: cover;
   object-position: center 12%;
-  border-radius: 14px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border);
 }
 
@@ -127,7 +127,7 @@
 
 @media (max-width: 480px) {
   .about {
-    padding: 56px 20px;
+    padding: var(--section-y-sm) var(--section-x-sm);
   }
 
   .about__heading {
