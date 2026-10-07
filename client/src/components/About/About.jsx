@@ -1,4 +1,4 @@
-import avatar from '../../assets/avatar.jpg'
+import avatar from '../../assets/avatar.webp'
 import { useReveal } from '../../hooks/useReveal'
 import './About.css'
 
