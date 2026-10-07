@@ -393,9 +393,9 @@ html[data-project-transition='close']::view-transition-new(root) {
 }
 
 .modal-tag {
-  font-size: 12px;
-  font-weight: 600;
-  padding: 7px 14px;
+  font-size: var(--chip-size);
+  font-weight: var(--chip-weight);
+  padding: var(--chip-padding);
   border-radius: 999px;
   background: var(--color-sage-pale);
   color: var(--text-h);

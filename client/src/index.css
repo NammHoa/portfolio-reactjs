@@ -25,6 +25,12 @@
   --radius-card: 28px;
   --radius-block: 36px;
 
+  /* Every chip (skills, project and modal tags) shares one shape; only the colour
+     changes with the surface it sits on. */
+  --chip-size: 13px;
+  --chip-weight: 500;
+  --chip-padding: 7px 14px;
+
   /* Two elevation levels: resting cards and floating chrome. */
   --shadow-soft: 0 20px 40px -20px rgba(20, 33, 15, 0.15);
   --shadow-float: 0 12px 24px -12px rgba(20, 33, 15, 0.28);
