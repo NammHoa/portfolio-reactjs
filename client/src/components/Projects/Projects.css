@@ -395,3 +395,16 @@
   }
 
 }
+
+/* Stand-alone links need a comfortable hit area (WCAG 2.2 asks for at least 24px). */
+.project__link,
+.project__details-btn {
+  min-height: 28px;
+}
+
+@media (max-width: 900px), (pointer: coarse) {
+  .project__link,
+  .project__details-btn {
+    min-height: 44px;
+  }
+}

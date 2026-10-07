@@ -99,8 +99,9 @@
   color: var(--color-ink);
 }
 
+/* Darker than the card, not lighter, so the cream text keeps AA contrast. */
 .skills__group--forest .skills__tag {
-  background: rgba(255, 254, 250, 0.16);
+  background: rgba(20, 33, 15, 0.28);
   color: var(--color-cream);
 }
 
@@ -176,7 +177,7 @@
 }
 
 .skills__group--forest .skills__tag:hover {
-  background: rgba(255, 254, 250, 0.26);
+  background: rgba(20, 33, 15, 0.42);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -76,12 +76,42 @@ function ProjectModal({
     }
   }, [])
 
+  // Move keyboard focus into the dialog, and hand it back to the opener on close.
+  useEffect(() => {
+    const opener = document.activeElement
+    panelRef.current?.focus({ preventScroll: true })
+    return () => {
+      if (opener instanceof HTMLElement && opener.isConnected) {
+        opener.focus({ preventScroll: true })
+      }
+    }
+  }, [])
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (closing) return
       if (event.key === 'Escape') requestClose()
       if (event.key === 'ArrowLeft') onPrev()
       if (event.key === 'ArrowRight') onNext()
+
+      // Keep Tab inside the dialog while it is open.
+      if (event.key === 'Tab' && panelRef.current) {
+        const focusable = [
+          ...panelRef.current.querySelectorAll('a[href], button:not([disabled])'),
+        ].filter((el) => el.offsetParent !== null)
+        if (focusable.length === 0) return
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+        const outside = !panelRef.current.contains(document.activeElement)
+        const onPanel = document.activeElement === panelRef.current
+        if (event.shiftKey && (document.activeElement === first || onPanel || outside)) {
+          event.preventDefault()
+          last.focus()
+        } else if (!event.shiftKey && (document.activeElement === last || outside)) {
+          event.preventDefault()
+          first.focus()
+        }
+      }
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
@@ -106,6 +136,7 @@ function ProjectModal({
         role="dialog"
         aria-modal="true"
         aria-label={project.name}
+        tabIndex={-1}
         onClick={(event) => event.stopPropagation()}
       >
         <button
@@ -236,13 +267,15 @@ function ProjectModal({
 
         <footer className="modal-footer">
           <button type="button" onClick={onPrev}>
-            <span aria-hidden="true">←</span> Previous project
+            <span aria-hidden="true">←</span> Previous
+            <span className="modal-footer-extra"> project</span>
           </button>
           <span className="modal-footer-label">
             {project.category === 'experience' ? 'WORK EXPERIENCE' : 'SIDE BUILDS'}
           </span>
           <button type="button" onClick={onNext}>
-            Next project <span aria-hidden="true">→</span>
+            Next<span className="modal-footer-extra"> project</span>{' '}
+            <span aria-hidden="true">→</span>
           </button>
         </footer>
       </div>

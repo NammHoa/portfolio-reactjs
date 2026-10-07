@@ -28,3 +28,15 @@
     padding: 24px 20px 32px;
   }
 }
+
+.site-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+}
+
+@media (max-width: 900px), (pointer: coarse) {
+  .site-footer a {
+    min-height: 44px;
+  }
+}

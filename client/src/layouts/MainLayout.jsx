@@ -6,7 +6,9 @@ function MainLayout() {
   return (
     <div id="top">
       <Header />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
       <Footer />
     </div>
   )

@@ -607,6 +607,14 @@ html[data-project-transition='close']::view-transition-new(root) {
     padding: 0 20px;
   }
 
+  .modal-footer {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .modal-footer button {
+    white-space: nowrap;
+  }
+
   .modal-footer-label {
     display: none;
   }
@@ -614,4 +622,21 @@ html[data-project-transition='close']::view-transition-new(root) {
   .modal-headline {
     font-size: 28px;
   }
+}
+
+/* Secondary links in the modal: a comfortable hit area too. */
+.modal-link {
+  min-height: 44px;
+}
+
+/* On very narrow phones the footer buttons read "Previous" / "Next" so both fit. */
+@media (max-width: 360px) {
+  .modal-footer-extra {
+    display: none;
+  }
+}
+
+/* The panel itself takes focus when the dialog opens; no ring around the whole panel. */
+.modal-panel:focus {
+  outline: none;
 }
