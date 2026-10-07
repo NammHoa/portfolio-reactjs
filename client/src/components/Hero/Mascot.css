@@ -2,8 +2,11 @@
   width: 100%;
   max-width: 520px;
   aspect-ratio: 4 / 3;
-  box-shadow: 0 24px 48px -24px rgba(20, 33, 15, 0.25);
   border-radius: 28px;
+  overflow: hidden;
+  background: #fbeedd;
+  box-shadow: 0 24px 48px -24px rgba(20, 33, 15, 0.25);
+  cursor: pointer;
 }
 
 .mascot svg {
@@ -12,178 +15,13 @@
   height: 100%;
 }
 
-.mascot[data-paused='true'] * {
-  animation-play-state: paused !important;
+.mascot-w {
+  fill: #fff;
+  stroke: #161616;
+  stroke-width: 4;
+  stroke-linejoin: round;
 }
 
 .mascot-far {
-  animation: mascot-scroll-far 60s linear infinite;
-}
-
-.mascot-trees {
-  animation: mascot-scroll-trees 24s linear infinite;
-}
-
-.mascot-dashes {
-  animation: mascot-scroll-dashes 0.6s linear infinite;
-}
-
-.mascot-bob {
-  animation: mascot-bob 0.45s ease-in-out infinite;
-}
-
-.mascot-leg {
-  animation: mascot-stride 0.9s ease-in-out infinite;
-}
-
-.mascot-leg--back {
-  animation-delay: -0.45s;
-}
-
-.mascot-arm {
-  animation: mascot-arm 0.9s ease-in-out infinite;
-  animation-delay: -0.45s;
-}
-
-.mascot-laptop {
-  animation: mascot-laptop 0.9s ease-in-out infinite alternate;
-}
-
-.mascot-eye {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: mascot-blink 4.6s infinite;
-}
-
-.mascot-pupil {
-  transform: translate(var(--px, 0px), var(--py, 0px));
-  transition: transform 0.18s ease-out;
-}
-
-.mascot-brow {
-  transition: transform 0.25s ease-out;
-}
-
-.mascot:hover .mascot-brow {
-  transform: translateY(-5px);
-}
-
-.mascot:hover .mascot-hop {
-  animation: mascot-hop 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.mascot-note {
-  opacity: 0;
-  animation: mascot-note 2.8s ease-out infinite;
-}
-
-.mascot-note--2 {
-  animation-delay: -0.9s;
-}
-
-.mascot-note--3 {
-  animation-delay: -1.8s;
-}
-
-@keyframes mascot-scroll-far {
-  to {
-    transform: translateX(-760px);
-  }
-}
-
-@keyframes mascot-scroll-trees {
-  to {
-    transform: translateX(-760px);
-  }
-}
-
-@keyframes mascot-scroll-dashes {
-  to {
-    transform: translateX(-120px);
-  }
-}
-
-@keyframes mascot-bob {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
-}
-
-@keyframes mascot-stride {
-  0%,
-  100% {
-    transform: rotate(-28deg);
-  }
-  50% {
-    transform: rotate(28deg);
-  }
-}
-
-@keyframes mascot-arm {
-  0%,
-  100% {
-    transform: rotate(-16deg);
-  }
-  50% {
-    transform: rotate(16deg);
-  }
-}
-
-@keyframes mascot-laptop {
-  from {
-    transform: rotate(-4deg);
-  }
-  to {
-    transform: rotate(-1deg);
-  }
-}
-
-@keyframes mascot-blink {
-  0%,
-  94%,
-  100% {
-    transform: scaleY(1);
-  }
-  96.5% {
-    transform: scaleY(0.1);
-  }
-}
-
-@keyframes mascot-hop {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-26px);
-  }
-}
-
-@keyframes mascot-note {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0);
-  }
-  15% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-34px, -80px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mascot * {
-    animation: none !important;
-    transition: none !important;
-  }
-
-  .mascot-note {
-    opacity: 0;
-  }
+  fill: #e3e9ee;
 }
