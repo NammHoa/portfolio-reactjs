@@ -45,7 +45,7 @@
   background: var(--color-paper);
   border: 1px solid var(--border);
   border-radius: var(--radius-card);
-  padding: 28px;
+  padding: var(--card-pad);
   box-shadow: var(--shadow-soft);
 }
 
@@ -134,7 +134,4 @@
     font-size: 28px;
   }
 
-  .about__card {
-    padding: 22px;
-  }
 }

@@ -22,7 +22,7 @@
   align-items: center;
   gap: 48px;
   margin-top: 48px;
-  padding: 56px;
+  padding: var(--block-pad);
   background: var(--color-forest);
   border-radius: var(--radius-block);
   color: var(--color-cream);
@@ -100,7 +100,7 @@
   gap: 18px;
   background: var(--color-cream);
   border-radius: var(--radius-card);
-  padding: 32px;
+  padding: var(--card-pad);
   color: var(--color-text);
 }
 
@@ -188,7 +188,6 @@
   .contact__grid {
     grid-template-columns: 1fr;
     gap: 40px;
-    padding: 40px 32px;
   }
 
   .contact__heading {
@@ -202,7 +201,6 @@
   }
 
   .contact__grid {
-    padding: 32px 20px;
     border-radius: var(--radius-card);
   }
 
@@ -210,9 +208,6 @@
     font-size: 30px;
   }
 
-  .contact__form {
-    padding: 24px 20px;
-  }
 }
 
 /* Motion: links slide in one by one, then the form follows. */

@@ -31,6 +31,11 @@
   --chip-weight: 500;
   --chip-padding: 7px 14px;
 
+  /* Card padding: ordinary cards, the roomier side-build cards, and the big colour block. */
+  --card-pad: 28px;
+  --card-pad-lg: 36px;
+  --block-pad: 56px;
+
   /* Two elevation levels: resting cards and floating chrome. */
   --shadow-soft: 0 20px 40px -20px rgba(20, 33, 15, 0.15);
   --shadow-float: 0 12px 24px -12px rgba(20, 33, 15, 0.28);
@@ -148,5 +153,19 @@ a {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --block-pad: 40px 32px;
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --card-pad: 20px;
+    --card-pad-lg: 24px;
+    --block-pad: 32px 20px;
   }
 }

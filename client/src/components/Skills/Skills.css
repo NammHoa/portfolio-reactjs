@@ -45,7 +45,7 @@
   column-gap: 16px;
   row-gap: 14px;
   align-items: center;
-  padding: 22px 28px 24px;
+  padding: var(--card-pad);
   border-radius: var(--radius-card);
   background: var(--color-peach-soft);
   color: var(--color-ink);
@@ -126,9 +126,6 @@
     font-size: 30px;
   }
 
-  .skills__group {
-    padding: 20px 20px 22px;
-  }
 }
 
 /* Motion: cards rise one after another when the section reveals, and lift on hover. */

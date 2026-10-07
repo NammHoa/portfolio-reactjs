@@ -181,7 +181,7 @@
   flex-direction: column;
   align-items: stretch;
   gap: 0;
-  padding: 36px;
+  padding: var(--card-pad-lg);
   border-top: none;
   border-radius: var(--radius-card);
   background: var(--color-peach-soft);
@@ -371,7 +371,7 @@
   }
 
   .project.project--card {
-    padding: 28px 24px;
+    padding: var(--card-pad);
     gap: 0;
   }
 
