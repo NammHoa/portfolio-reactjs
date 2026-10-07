@@ -70,20 +70,17 @@
 }
 
 .contact__quick-link-icon {
+  --duo-line: var(--color-sage-pale);
+  --duo-tone: rgba(210, 222, 206, 0.32);
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--color-sage-mid);
-  color: var(--color-forest);
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: rgba(255, 254, 250, 0.1);
+  font-size: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.contact__quick-link-icon svg {
-  width: 15px;
-  height: 15px;
 }
 
 .contact__form {

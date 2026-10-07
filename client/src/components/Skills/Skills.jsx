@@ -1,4 +1,11 @@
 import { useReveal } from '../../hooks/useReveal'
+import {
+  IconCode,
+  IconBrowser,
+  IconServer,
+  IconDatabase,
+  IconToolbox,
+} from '../Icons/icons'
 import './Skills.css'
 
 const SKILL_GROUPS = [
@@ -6,26 +13,31 @@ const SKILL_GROUPS = [
     title: 'Languages',
     items: ['Dart', 'Java', 'JavaScript'],
     tone: 'peach',
+    Icon: IconCode,
   },
   {
     title: 'Frontend',
     items: ['React.js', 'Flutter'],
     tone: 'forest',
+    Icon: IconBrowser,
   },
   {
     title: 'Backend',
     items: ['Node.js', 'Express.js', 'ASP.NET Core', 'RESTful API'],
     tone: 'sage',
+    Icon: IconServer,
   },
   {
     title: 'Databases',
     items: ['MongoDB', 'SQL Server', 'Firebase'],
     tone: 'peach',
+    Icon: IconDatabase,
   },
   {
     title: 'Tools & Workflow',
     items: ['Git/GitHub', 'Figma', 'Jira', 'Postman'],
     tone: 'sage',
+    Icon: IconToolbox,
   },
 ]
 
@@ -52,12 +64,14 @@ function Skills() {
         </h2>
 
         <div className="skills__grid">
-          {SKILL_GROUPS.map((group, index) => (
+          {SKILL_GROUPS.map((group) => (
             <article
               key={group.title}
               className={`skills__group skills__group--${group.tone}`}
             >
-              <span className="skills__num">{String(index + 1).padStart(2, '0')}</span>
+              <span className="skills__icon">
+                <group.Icon />
+              </span>
               <h3>{group.title}</h3>
               <div className="skills__tags">
                 {group.items.map((item) => (

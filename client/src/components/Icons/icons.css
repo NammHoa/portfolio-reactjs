@@ -1,0 +1,23 @@
+/*
+ * Duotone icons: a soft tone shape sits slightly offset behind a crisp line shape.
+ * Colours come from CSS variables so each surface can pick its own pair.
+ */
+.duo {
+  display: block;
+  width: 1em;
+  height: 1em;
+  overflow: visible;
+}
+
+.duo__tone {
+  fill: var(--duo-tone, #f6d9bd);
+  stroke: none;
+}
+
+.duo__line {
+  fill: none;
+  stroke: var(--duo-line, currentColor);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

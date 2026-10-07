@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { IconMail, IconPhone, IconGithub } from './icons'
+import { IconMail, IconPhone, IconGithub } from '../Icons/icons'
 import { sendContactMessage } from '../../lib/api'
 import { useReveal } from '../../hooks/useReveal'
 import './Contact.css'
