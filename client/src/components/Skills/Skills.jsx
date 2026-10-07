@@ -64,9 +64,10 @@ function Skills() {
         </h2>
 
         <div className="skills__grid">
-          {SKILL_GROUPS.map((group) => (
+          {SKILL_GROUPS.map((group, index) => (
             <article
               key={group.title}
+              style={{ '--i': index }}
               className={`skills__group skills__group--${group.tone}`}
             >
               <span className="skills__icon">

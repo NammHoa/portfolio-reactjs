@@ -62,11 +62,15 @@
   color: var(--color-cream);
   font-size: 14px;
   font-weight: 600;
-  transition: opacity 0.15s ease;
 }
 
-.contact__quick-links a:hover {
-  opacity: 0.7;
+.contact__quick-links a:hover .contact__quick-link-icon {
+  background: rgba(255, 254, 250, 0.2);
+  transform: translateY(-2px) rotate(-6deg);
+}
+
+.contact__quick-links a:hover .duo__tone {
+  transform: translate(1.2px, 1.2px);
 }
 
 .contact__quick-link-icon {
@@ -81,6 +85,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition:
+    transform 0.3s var(--ease-out),
+    background-color 0.3s var(--ease-out);
+}
+
+.contact__quick-link-icon .duo__tone {
+  transition: transform 0.3s var(--ease-out);
 }
 
 .contact__form {
@@ -146,11 +157,12 @@
   padding: 14px 22px;
   border-radius: 999px;
   cursor: pointer;
-  transition: opacity 0.15s ease;
+  transition: opacity 0.15s ease, translate 0.25s var(--ease-out);
 }
 
-.contact__submit:hover {
+.contact__submit:hover:not(:disabled) {
   opacity: 0.85;
+  translate: 0 -2px;
 }
 
 .contact__submit:disabled {
@@ -200,5 +212,37 @@
 
   .contact__form {
     padding: 24px 20px;
+  }
+}
+
+/* Motion: links slide in one by one, then the form follows. */
+.contact__quick-links li,
+.contact__form {
+  opacity: 0;
+  transition:
+    opacity 0.6s var(--ease-out) calc(0.2s + var(--i, 4) * 0.09s),
+    transform 0.6s var(--ease-out) calc(0.2s + var(--i, 4) * 0.09s);
+}
+
+.contact__quick-links li {
+  transform: translateX(-20px);
+}
+
+.contact__form {
+  transform: translateY(28px);
+}
+
+.reveal--visible .contact__quick-links li,
+.reveal--visible .contact__form {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact__quick-links li,
+  .contact__form {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

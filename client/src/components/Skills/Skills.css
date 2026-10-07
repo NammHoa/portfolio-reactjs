@@ -129,3 +129,65 @@
     padding: 20px 20px 22px;
   }
 }
+
+/* Motion: cards rise one after another when the section reveals, and lift on hover. */
+.skills__group {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.6s var(--ease-out) calc(0.1s + var(--i, 0) * 0.09s),
+    transform 0.6s var(--ease-out) calc(0.1s + var(--i, 0) * 0.09s),
+    translate 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out);
+}
+
+.reveal--visible .skills__group {
+  opacity: 1;
+  transform: none;
+}
+
+.skills__group:hover {
+  translate: 0 -4px;
+  box-shadow: var(--shadow-soft);
+}
+
+.skills__icon {
+  transition: transform 0.3s var(--ease-out);
+}
+
+.skills__group:hover .skills__icon {
+  transform: rotate(-6deg) scale(1.07);
+}
+
+.skills__group .duo__tone {
+  transition: transform 0.3s var(--ease-out);
+}
+
+.skills__group:hover .duo__tone {
+  transform: translate(1.2px, 1.2px);
+}
+
+.skills__tag {
+  transition: background-color 0.2s ease;
+}
+
+.skills__tag:hover {
+  background: rgba(255, 254, 250, 0.95);
+}
+
+.skills__group--forest .skills__tag:hover {
+  background: rgba(255, 254, 250, 0.26);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills__group {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .skills__icon,
+  .skills__group .duo__tone {
+    transition: none;
+  }
+}

@@ -78,8 +78,8 @@ function Contact() {
           </p>
 
           <ul className="contact__quick-links">
-            {CONTACT_LINKS.map((link) => (
-              <li key={link.label}>
+            {CONTACT_LINKS.map((link, index) => (
+              <li key={link.label} style={{ '--i': index }}>
                 <a
                   href={link.href}
                   target={link.href.startsWith('http') ? '_blank' : undefined}
