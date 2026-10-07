@@ -319,11 +319,18 @@ html[data-project-transition='close']::view-transition-new(root) {
 /* Role and period, set off between two hairlines. */
 .modal-facts {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  /* One column for the labels (as wide as the longest), one for the values. */
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: 28px;
+  row-gap: 12px;
   margin: 28px 0 0;
   padding: 18px 0;
   border-block: 1px solid var(--border);
+}
+
+.modal-facts > div {
+  display: contents;
 }
 
 .modal-facts dt {
@@ -333,7 +340,6 @@ html[data-project-transition='close']::view-transition-new(root) {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-text-soft);
-  margin-bottom: 6px;
 }
 
 .modal-facts dd {
