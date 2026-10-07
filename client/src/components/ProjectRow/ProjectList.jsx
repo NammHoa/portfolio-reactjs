@@ -34,7 +34,7 @@ function ProjectList({ projects, onOpen }) {
               project={project}
               delayIndex={delay++}
               reverse={reverse}
-              onOpen={() => onOpen(project._id)}
+              onOpen={(article) => onOpen(project._id, article)}
             />
           )
         }
@@ -46,7 +46,7 @@ function ProjectList({ projects, onOpen }) {
                 project={project}
                 delayIndex={delay++}
                 reverse={false}
-                onOpen={() => onOpen(project._id)}
+                onOpen={(article) => onOpen(project._id, article)}
               />
             ))}
           </div>

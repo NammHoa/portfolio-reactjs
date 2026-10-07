@@ -9,7 +9,6 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
-  animation: modalFadeIn 0.2s ease;
 }
 
 @keyframes modalFadeIn {
@@ -19,6 +18,23 @@
   to {
     opacity: 1;
   }
+}
+
+@keyframes modalFadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+/* 'grow' and 'fade' openings: the backdrop fades; in 'flight' the View
+   Transition cross-fades the whole page instead. */
+.modal-backdrop--grow,
+.modal-backdrop--fade {
+  animation: modalFadeIn 0.3s ease both;
+}
+
+.modal-backdrop--closing {
+  animation: modalFadeOut 0.38s ease both;
 }
 
 .modal-panel {
@@ -31,7 +47,75 @@
   border-radius: var(--radius-md);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  animation: modalFadeIn 0.25s ease;
+}
+
+.modal-panel--fade {
+  animation: modalFadeIn 0.2s ease both;
+}
+
+/* --- Shared-element flight: the project's visual flies between card and modal. --- */
+html[data-project-transition] {
+  --flight: 0.66s;
+}
+
+html[data-project-transition='close'] {
+  --flight: 0.52s;
+}
+
+html[data-project-transition='change'] {
+  --flight: 0.42s;
+}
+
+html[data-project-transition]::view-transition-group(project-visual) {
+  animation-duration: var(--flight);
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html[data-project-transition]::view-transition-image-pair(project-visual) {
+  border-radius: var(--vt-radius-to, 0px);
+  animation: vtCorners var(--flight) cubic-bezier(0.22, 1, 0.36, 1) both;
+  overflow: hidden;
+}
+
+html[data-project-transition]::view-transition-old(project-visual),
+html[data-project-transition]::view-transition-new(project-visual) {
+  mix-blend-mode: normal;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Opening and closing show only the destination image as it travels; moving
+   between projects keeps the default cross-fade. */
+html[data-project-transition='open']::view-transition-old(project-visual),
+html[data-project-transition='close']::view-transition-old(project-visual) {
+  opacity: 0;
+  animation: none;
+}
+
+html[data-project-transition='open']::view-transition-new(project-visual),
+html[data-project-transition='close']::view-transition-new(project-visual) {
+  opacity: 1;
+  animation: none;
+}
+
+@keyframes vtCorners {
+  from {
+    border-radius: var(--vt-radius-from, 0px);
+  }
+  to {
+    border-radius: var(--vt-radius-to, 0px);
+  }
+}
+
+html[data-project-transition='open']::view-transition-old(root),
+html[data-project-transition='close']::view-transition-old(root) {
+  animation-duration: 0.3s;
+}
+
+html[data-project-transition='open']::view-transition-new(root),
+html[data-project-transition='close']::view-transition-new(root) {
+  animation-duration: 0.4s;
 }
 
 .modal-close {
@@ -70,11 +154,22 @@
   overflow: hidden;
 }
 
+.modal-visual-tile {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: linear-gradient(155deg, var(--color-sage-pale), var(--color-sage-mid));
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .modal-visual-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 16px 32px rgba(20, 33, 15, 0.25));
+  object-fit: cover;
 }
 
 .modal-visual-index {
@@ -101,14 +196,14 @@
 }
 
 .modal-visual-logo {
-  width: 120px;
-  height: 120px;
+  width: 84px;
+  height: 84px;
   object-fit: contain;
-  filter: drop-shadow(0 12px 24px rgba(20, 33, 15, 0.25));
+  filter: drop-shadow(0 8px 16px rgba(20, 33, 15, 0.2));
 }
 
 .modal-visual-company {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--text-h);
   text-align: center;

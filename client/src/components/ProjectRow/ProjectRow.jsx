@@ -6,6 +6,8 @@ function ProjectRow({ project, delayIndex, reverse, onOpen }) {
   const { ref, isVisible, direction } = useReveal()
   const tilt = useTilt(8)
   const hasVisual = Boolean(project.image || project.logo)
+  // The modal grows out of (and returns to) the row that was clicked.
+  const handleOpen = (event) => onOpen(event.currentTarget.closest('.project'))
 
   const classes = [
     'project',
@@ -18,6 +20,7 @@ function ProjectRow({ project, delayIndex, reverse, onOpen }) {
     <article
       ref={ref}
       className={classes}
+      data-project-id={project._id}
       style={{ '--reveal-delay': `${delayIndex * 0.08}s` }}
     >
       {hasVisual && (
@@ -26,7 +29,7 @@ function ProjectRow({ project, delayIndex, reverse, onOpen }) {
           aria-hidden="true"
           onMouseMove={tilt.onMouseMove}
           onMouseLeave={tilt.onMouseLeave}
-          onClick={onOpen}
+          onClick={handleOpen}
         >
           <div
             className="project__visual"
@@ -116,7 +119,7 @@ function ProjectRow({ project, delayIndex, reverse, onOpen }) {
           <button
             type="button"
             className="project__details-btn"
-            onClick={onOpen}
+            onClick={handleOpen}
           >
             Explore the details
             <span aria-hidden="true">↗</span>
