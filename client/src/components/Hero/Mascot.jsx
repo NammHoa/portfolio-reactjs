@@ -618,7 +618,7 @@ function Mascot() {
             fontSize="15"
             fontWeight="800"
             fill="#2f4a2b"
-            fontFamily="Inter, system-ui, sans-serif"
+            style={{ fontFamily: 'var(--font-display)' }}
           >
             Hi, I&apos;m Nam!
           </text>
@@ -635,7 +635,7 @@ function Mascot() {
             fontSize="15"
             fontWeight="800"
             fill="#2f4a2b"
-            fontFamily="Inter, system-ui, sans-serif"
+            style={{ fontFamily: 'var(--font-display)' }}
           >
             It&apos;s me!
           </text>

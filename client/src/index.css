@@ -1,13 +1,34 @@
 :root {
-  --text: #5c6156;
-  --text-h: #14210f;
-  --bg: #faf7f2;
-  --border: #e5e1d8;
-  --accent: #2f4a2b;
+  /* Palette: warm cream paper, deep forest ink, and a few soft tonal accents. */
+  --color-cream: #faf7f2;
+  --color-paper: #ffffff;
+  --color-ink: #14210f;
+  --color-text: #5c6156;
+  --color-line: #e5e1d8;
+  --color-forest: #2f4a2b;
+  --color-forest-deep: #1f3320;
+  --color-peach: #f1d5ba;
+  --color-peach-soft: #fbeedd;
+  --color-lime: #e4ecc4;
+  --color-sage: #e3ead4;
+  --color-butter: #fbefc3;
+  --color-coral: #ee6c4d;
+  --color-coral-deep: #b5544a;
+  --color-sun: #f7c948;
 
-  --sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  /* Aliases used throughout the component styles. */
+  --text: var(--color-text);
+  --text-h: var(--color-ink);
+  --bg: var(--color-cream);
+  --border: var(--color-line);
+  --accent: var(--color-forest);
 
-  font: 16px/150% var(--sans);
+  /* Type: a characterful display face for headings, a calm body face, and mono for labels. */
+  --font-display: 'Bricolage Grotesque Variable', 'DM Sans Variable', system-ui, 'Segoe UI', sans-serif;
+  --font-body: 'DM Sans Variable', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  font: 400 16px/1.55 var(--font-body);
   color-scheme: light;
   color: var(--text);
   background: var(--bg);
@@ -25,9 +46,16 @@ body {
   margin: 0;
 }
 
-h1, h2, h3 {
-  font-family: var(--sans);
-  font-weight: 700;
+::selection {
+  background: var(--color-peach);
+  color: var(--color-ink);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
   color: var(--text-h);
   margin: 0;
 }
@@ -38,6 +66,24 @@ p {
 
 a {
   color: inherit;
+}
+
+/* Small uppercase labels ("01 / ABOUT", eyebrow, project numbers) use the mono face. */
+.hero__eyebrow,
+.about__meta,
+.projects__meta,
+.skills__meta,
+.contact__meta,
+.project__index,
+.project__period {
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+
+.header__logo,
+.about__card-name {
+  font-family: var(--font-display);
+  font-weight: 800;
 }
 
 .reveal {

@@ -229,7 +229,7 @@
   font-weight: 600;
   padding: 6px 12px;
   border-radius: 999px;
-  background: var(--border);
+  background: var(--color-sage);
   color: var(--text-h);
 }
 

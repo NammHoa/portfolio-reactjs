@@ -4,7 +4,7 @@
   aspect-ratio: 4 / 3;
   border-radius: 28px;
   overflow: hidden;
-  background: #fbeedd;
+  background: var(--color-peach-soft);
   box-shadow: 0 24px 48px -24px rgba(20, 33, 15, 0.25);
   cursor: pointer;
 }

@@ -52,8 +52,8 @@
   font-weight: 600;
   padding: 8px 14px;
   border-radius: 999px;
-  background: #fff;
-  border: 1px solid var(--border);
+  background: var(--color-sage);
+  border: 1px solid transparent;
   color: var(--text-h);
 }
 
