@@ -67,6 +67,14 @@ body {
   margin: 0;
 }
 
+/* Buttons and form controls ignore the page font unless told to inherit it. */
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
 ::selection {
   background: var(--color-peach-soft);
   color: var(--color-ink);
