@@ -12,7 +12,7 @@
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: var(--text);
+  color: var(--color-text-soft);
 }
 
 .projects__list {
@@ -92,7 +92,7 @@
   width: 100%;
   min-width: 0;
   aspect-ratio: 4 / 3;
-  background: linear-gradient(155deg, #eef1e8, #dfe6d6);
+  background: linear-gradient(155deg, var(--color-sage-pale), var(--color-sage-mid));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -229,7 +229,7 @@
   font-weight: 600;
   padding: 6px 12px;
   border-radius: 999px;
-  background: var(--color-sage);
+  background: var(--color-sage-pale);
   color: var(--text-h);
 }
 

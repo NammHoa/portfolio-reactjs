@@ -12,48 +12,36 @@
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: var(--text);
+  color: var(--color-text-soft);
 }
 
+/* The one deep-forest block on the page: strong contrast against the light sections. */
 .contact__grid {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   align-items: center;
   gap: 48px;
-  padding-top: 48px;
+  margin-top: 48px;
+  padding: 56px;
+  background: var(--color-forest);
+  border-radius: var(--radius-block);
+  color: var(--color-cream);
 }
 
 .contact__heading {
-  font-size: 44px;
-  line-height: 1.15;
-  letter-spacing: -1px;
+  font-size: 48px;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
   margin-bottom: 20px;
+  color: var(--color-cream);
 }
 
 .contact__subtitle {
   font-size: 17px;
   line-height: 1.6;
-  color: var(--text);
+  color: rgba(255, 254, 250, 0.78);
   max-width: 420px;
   margin-bottom: 32px;
-}
-
-.contact__cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--accent);
-  color: var(--bg);
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 600;
-  padding: 14px 22px;
-  border-radius: 999px;
-  transition: opacity 0.15s ease;
-}
-
-.contact__cta:hover {
-  opacity: 0.85;
 }
 
 .contact__quick-links {
@@ -71,7 +59,7 @@
   gap: 12px;
   padding: 8px 0;
   text-decoration: none;
-  color: var(--text-h);
+  color: var(--color-cream);
   font-size: 14px;
   font-weight: 600;
   transition: opacity 0.15s ease;
@@ -86,8 +74,8 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: var(--accent);
-  color: var(--bg);
+  background: var(--color-sage-mid);
+  color: var(--color-forest);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,11 +90,10 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 16px;
+  background: var(--color-cream);
+  border-radius: var(--radius-card);
   padding: 32px;
-  box-shadow: 0 20px 40px -20px rgba(20, 33, 15, 0.15);
+  color: var(--color-text);
 }
 
 .contact__field {
@@ -116,11 +103,12 @@
 }
 
 .contact__field label {
+  font-family: var(--font-mono);
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text);
+  color: var(--color-text-soft);
 }
 
 .contact__field input,
@@ -128,17 +116,24 @@
   font: inherit;
   font-size: 15px;
   color: var(--text-h);
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  background: var(--color-sage-pale);
+  border: 1px solid transparent;
+  border-radius: 14px;
   padding: 12px 14px;
   resize: vertical;
+}
+
+.contact__field input::placeholder,
+.contact__field textarea::placeholder {
+  color: var(--color-text-soft);
+  opacity: 1;
 }
 
 .contact__field input:focus,
 .contact__field textarea:focus {
   outline: 2px solid var(--accent);
   outline-offset: 1px;
+  background: var(--color-cream);
 }
 
 .contact__submit {
@@ -177,17 +172,18 @@
 }
 
 .contact__status--error {
-  color: #b5544a;
+  color: var(--color-coral-deep);
 }
 
 @media (max-width: 900px) {
   .contact__grid {
     grid-template-columns: 1fr;
     gap: 40px;
+    padding: 40px 32px;
   }
 
   .contact__heading {
-    font-size: 34px;
+    font-size: 36px;
   }
 }
 
@@ -196,11 +192,16 @@
     padding: 56px 20px;
   }
 
-  .contact__heading {
-    font-size: 28px;
+  .contact__grid {
+    padding: 32px 20px;
+    border-radius: 28px;
   }
 
-  .contact__card {
-    padding: 4px 20px;
+  .contact__heading {
+    font-size: 30px;
+  }
+
+  .contact__form {
+    padding: 24px 20px;
   }
 }

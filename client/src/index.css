@@ -1,20 +1,26 @@
 :root {
-  /* Palette: warm cream paper, deep forest ink, and a few soft tonal accents. */
-  --color-cream: #faf7f2;
+  /*
+   * Palette: a single olive-green family (the logo's own colour) in graded tones,
+   * on warm cream, with soft peach and one coral accent borrowed from the mascot.
+   * Every green shares the same hue so neighbouring blocks blend instead of clash.
+   */
+  --color-cream: #fcfaf5;
   --color-paper: #ffffff;
-  --color-ink: #14210f;
-  --color-text: #5c6156;
-  --color-line: #e5e1d8;
+  --color-ink: #21361c;
+  --color-text: #3f483c;
+  --color-text-soft: #5d675b;
+  --color-line: #dfe5dc;
   --color-forest: #2f4a2b;
-  --color-forest-deep: #1f3320;
-  --color-peach: #f1d5ba;
+  --color-forest-mid: #4a6543;
+  --color-sage-mid: #d2dece;
+  --color-sage-pale: #ecf1e9;
   --color-peach-soft: #fbeedd;
-  --color-lime: #e4ecc4;
-  --color-sage: #e3ead4;
-  --color-butter: #fbefc3;
   --color-coral: #ee6c4d;
   --color-coral-deep: #b5544a;
   --color-sun: #f7c948;
+
+  --radius-card: 28px;
+  --radius-block: 36px;
 
   /* Aliases used throughout the component styles. */
   --text: var(--color-text);
@@ -47,7 +53,7 @@ body {
 }
 
 ::selection {
-  background: var(--color-peach);
+  background: var(--color-peach-soft);
   color: var(--color-ink);
 }
 

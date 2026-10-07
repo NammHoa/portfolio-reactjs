@@ -12,7 +12,7 @@
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: var(--text);
+  color: var(--color-text-soft);
 }
 
 .about__grid {
@@ -42,7 +42,7 @@
 }
 
 .about__card {
-  background: #fff;
+  background: var(--color-paper);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 28px;
@@ -76,7 +76,7 @@
 
 .about__card-role {
   font-size: 13px;
-  color: var(--text);
+  color: var(--color-text);
   margin-top: 2px;
 }
 
