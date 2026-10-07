@@ -97,7 +97,11 @@ function ProjectModal({
         </button>
 
         {hasVisual && (
-          <div className="modal-visual" aria-hidden="true">
+          <div
+            className={`modal-visual ${project.image ? '' : 'modal-visual--logo'}`}
+            style={project.image ? { '--stage-image': `url("${project.image}")` } : undefined}
+            aria-hidden="true"
+          >
             {/* The tile the card's visual flies into; same 2:1 shape as on the page. */}
             <div className="modal-visual-tile">
               {project.image ? (
