@@ -10,7 +10,7 @@ function ProjectRow({ project, delayIndex, reverse, onOpen }) {
   const classes = [
     'project',
     reverse ? 'project--reverse' : '',
-    hasVisual ? '' : 'project--text-only',
+    hasVisual ? '' : 'project--card',
     isVisible ? 'project--visible' : `project--hidden-${direction}`,
   ].join(' ')
 
@@ -31,7 +31,6 @@ function ProjectRow({ project, delayIndex, reverse, onOpen }) {
           <div
             className="project__visual"
             ref={tilt.innerRef}
-            style={project.imageAspect ? { aspectRatio: project.imageAspect } : undefined}
           >
             {project.image ? (
               <img

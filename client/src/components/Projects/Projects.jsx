@@ -1,5 +1,5 @@
 import { useProjectModal } from '../../context/ProjectModalContext'
-import ProjectRow from '../ProjectRow/ProjectRow'
+import ProjectList from '../ProjectRow/ProjectList'
 import './Projects.css'
 
 function Projects() {
@@ -20,17 +20,7 @@ function Projects() {
       )}
 
       {!loading && !error && (
-        <div className="projects__list">
-          {experienceProjects.map((project, i) => (
-            <ProjectRow
-              key={project._id}
-              project={project}
-              delayIndex={i}
-              reverse={i % 2 === 1}
-              onOpen={() => openAt(project._id)}
-            />
-          ))}
-        </div>
+        <ProjectList projects={experienceProjects} onOpen={openAt} />
       )}
     </section>
   )
