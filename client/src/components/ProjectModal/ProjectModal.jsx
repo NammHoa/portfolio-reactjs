@@ -1,10 +1,19 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { IconCheck } from '../Icons/icons'
 import { grow, prefersReducedMotion } from './modalTransition'
 import '../Projects/Projects.css'
 import './ProjectModal.css'
 
 // Keep in sync with the "grow" closing length in modalTransition.js.
 const CLOSE_MS = 420
+
+const LINK_TEXT = {
+  'live site': 'Visit live site',
+  'company site': 'Visit company site',
+  github: 'View on GitHub',
+}
+
+const linkText = (label) => LINK_TEXT[label.toLowerCase()] ?? `View ${label}`
 
 // mode: how the modal was opened. 'flight' = the card's visual flew in (View
 // Transitions), 'grow' = the panel grew out of the card, 'fade' = reduced motion.
@@ -19,6 +28,18 @@ function ProjectModal({
   onNext,
 }) {
   const hasVisual = Boolean(project.image || project.logo)
+  // The first link is the main call to action; any others sit below it as plain rows.
+  const links = project.links?.length
+    ? project.links
+    : project.link
+      ? [
+          {
+            label: project.linkLabel || (project.company ? 'Company site' : 'Live site'),
+            href: project.link,
+          },
+        ]
+      : []
+  const [primaryLink, ...otherLinks] = links
   const panelRef = useRef(null)
   const [closing, setClosing] = useState(false)
 
@@ -124,52 +145,80 @@ function ProjectModal({
           </div>
         )}
 
-        <div className="modal-details">
+        <div className="modal-details" key={project._id}>
           {!hasVisual && (
             <span className="modal-ghost-index" aria-hidden="true">
               {project.index}
             </span>
           )}
 
-          <div className="modal-top">
-            <span className="modal-index">
+          <div className="modal-scroll">
+            <p className="modal-index">
               {project.index} / {total}
-            </span>
-            <span className="modal-role">
-              {project.role} · {project.period}
-            </span>
+            </p>
+
+            <h2 className="modal-headline">
+              {project.headlineLines.map((line) => (
+                <span key={line}>
+                  {line}
+                  <br />
+                </span>
+              ))}
+            </h2>
+
+            <p className="modal-name">{project.name}</p>
+
+            <p className="modal-description">{project.description}</p>
+
+            <dl className="modal-facts">
+              <div>
+                <dt>Role</dt>
+                <dd>{project.role}</dd>
+              </div>
+              <div>
+                <dt>Period</dt>
+                <dd>{project.period}</dd>
+              </div>
+            </dl>
+
+            <h3 className="modal-label">What I built</h3>
+            <ul className="modal-highlights">
+              {project.highlights.map((point) => (
+                <li key={point}>
+                  <span className="modal-highlight-icon">
+                    <IconCheck />
+                  </span>
+                  {point}
+                </li>
+              ))}
+            </ul>
+
+            <h3 className="modal-label">Stack</h3>
+            <div className="modal-tags">
+              {project.tags.map((tag) => (
+                <span key={tag} className="modal-tag">
+                  {tag}
+                </span>
+              ))}
+            </div>
+
           </div>
 
-          <h2 className="modal-headline">
-            {project.headlineLines.map((line) => (
-              <span key={line}>
-                {line}
-                <br />
-              </span>
-            ))}
-          </h2>
+          {primaryLink && (
+            <div className="modal-actions">
+              <a
+                href={primaryLink.href}
+                target="_blank"
+                rel="noreferrer"
+                className="modal-cta"
+              >
+                <span>{linkText(primaryLink.label)}</span>
+                <span className="modal-cta-arrow" aria-hidden="true">
+                  ↗
+                </span>
+              </a>
 
-          <p className="modal-name">{project.name}</p>
-
-          <p className="modal-description">{project.description}</p>
-
-          <ul className="modal-highlights">
-            {project.highlights.map((point) => (
-              <li key={point}>{point}</li>
-            ))}
-          </ul>
-
-          <div className="modal-tags">
-            {project.tags.map((tag) => (
-              <span key={tag} className="modal-tag">
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          {project.links?.length > 0 ? (
-            <div className="modal-links-group">
-              {project.links.map((link) => (
+              {otherLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
@@ -177,34 +226,25 @@ function ProjectModal({
                   rel="noreferrer"
                   className="modal-link"
                 >
-                  {link.label}
+                  {linkText(link.label)}
                   <span aria-hidden="true">↗</span>
                 </a>
               ))}
             </div>
-          ) : (
-            project.link && (
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noreferrer"
-                className="modal-link"
-              >
-                {project.linkLabel || (project.company ? 'Visit company site' : 'Visit live site')}
-                <span aria-hidden="true">↗</span>
-              </a>
-            )
           )}
-
-          <div className="modal-nav">
-            <button type="button" onClick={onPrev}>
-              <span aria-hidden="true">←</span> Previous project
-            </button>
-            <button type="button" onClick={onNext}>
-              Next project <span aria-hidden="true">→</span>
-            </button>
-          </div>
         </div>
+
+        <footer className="modal-footer">
+          <button type="button" onClick={onPrev}>
+            <span aria-hidden="true">←</span> Previous project
+          </button>
+          <span className="modal-footer-label">
+            {project.category === 'experience' ? 'WORK EXPERIENCE' : 'SIDE BUILDS'}
+          </span>
+          <button type="button" onClick={onNext}>
+            Next project <span aria-hidden="true">→</span>
+          </button>
+        </footer>
       </div>
     </div>
   )

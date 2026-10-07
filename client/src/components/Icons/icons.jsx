@@ -112,3 +112,15 @@ export function IconToolbox() {
     </Duotone>
   )
 }
+
+export function IconCheck() {
+  return (
+    <Duotone>
+      <circle className="duo__tone" cx="13.2" cy="13.2" r="9" />
+      <g className="duo__line">
+        <circle cx="12" cy="12" r="9" />
+        <path d="m8 12.4 2.7 2.7 5.5-5.5" />
+      </g>
+    </Duotone>
+  )
+}
