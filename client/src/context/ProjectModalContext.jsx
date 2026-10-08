@@ -9,6 +9,13 @@ const ProjectModalContext = createContext(null)
 const cardVisualFor = (id) =>
   document.querySelector(`[data-project-id="${CSS.escape(id)}"] .project__visual-frame`)
 
+// On phones the whole panel scrolls. Bring it back to the top first, so the picture is in
+// view when it flies and the next project always starts at its beginning.
+const scrollPanelToTop = () => {
+  const panel = document.querySelector('.modal-panel')
+  if (panel && panel.scrollTop > 0) panel.scrollTop = 0
+}
+
 const isOnScreen = (element) => {
   const rect = element.getBoundingClientRect()
   return (
@@ -116,6 +123,7 @@ export function ProjectModalProvider({ children }) {
     const card = cardVisualFor(id)
     if (!tile || !card || !isOnScreen(card)) return false
 
+    scrollPanelToTop()
     fly({
       kind: 'close',
       from: tile,
@@ -126,6 +134,7 @@ export function ProjectModalProvider({ children }) {
   }
 
   const step = (delta) => {
+    scrollPanelToTop()
     const apply = () =>
       setOpenIndex((current) => (current + delta + projects.length) % projects.length)
 

@@ -593,6 +593,12 @@ html[data-project-transition='close']::view-transition-new(root) {
     border-radius: var(--radius-card) var(--radius-card) 0 0;
   }
 
+  /* The picture touches the panel's top corners here, so it carries the same rounding
+     (also what the flight between projects draws it with). */
+  .modal-visual-tile {
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+  }
+
   .modal-details {
     overflow: visible;
   }

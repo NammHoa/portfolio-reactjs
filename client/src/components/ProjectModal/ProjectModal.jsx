@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { IconCheck } from '../Icons/icons'
 import { grow, prefersReducedMotion } from './modalTransition'
 import '../Projects/Projects.css'
@@ -75,6 +75,11 @@ function ProjectModal({
       document.body.style.overflow = ''
     }
   }, [])
+
+  // A different project always starts at its top (on phones the whole panel scrolls).
+  useLayoutEffect(() => {
+    if (panelRef.current) panelRef.current.scrollTop = 0
+  }, [project._id])
 
   // Move keyboard focus into the dialog, and hand it back to the opener on close.
   useEffect(() => {

@@ -24,8 +24,18 @@ function clearNames() {
   named.clear()
 }
 
-const radiusOf = (element) =>
-  element ? getComputedStyle(element).borderTopLeftRadius : '0px'
+// All four corners, in border-radius order. The modal picture on a phone is flush with the
+// panel's rounded top corners, so a single value would draw it square while it flies.
+const radiusOf = (element) => {
+  if (!element) return '0px 0px 0px 0px'
+  const cs = getComputedStyle(element)
+  return [
+    cs.borderTopLeftRadius,
+    cs.borderTopRightRadius,
+    cs.borderBottomRightRadius,
+    cs.borderBottomLeftRadius,
+  ].join(' ')
+}
 
 // kind: 'open' | 'close' | 'change'
 // from:   the visual shown before the update (or null)
