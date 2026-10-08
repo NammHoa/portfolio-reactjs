@@ -6,7 +6,7 @@
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid var(--border);
-  font-size: 13px;
+  font-size: var(--text-sm);
   font-weight: 600;
   color: var(--text);
 }

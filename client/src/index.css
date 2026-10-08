@@ -25,9 +25,16 @@
   --radius-card: 28px;
   --radius-block: 36px;
 
+  /* Type scale for running text: label, UI text, body, lead paragraph.
+     Headings step through 24 / 28 / 32 / 36 / 40 / 48. */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+
   /* Every chip (skills, project and modal tags) shares one shape; only the colour
      changes with the surface it sits on. */
-  --chip-size: 13px;
+  --chip-size: var(--text-sm);
   --chip-weight: 500;
   --chip-padding: 7px 14px;
 
