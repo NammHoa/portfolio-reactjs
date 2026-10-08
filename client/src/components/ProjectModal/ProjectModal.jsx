@@ -272,14 +272,18 @@ function ProjectModal({
 
         <footer className="modal-footer">
           <button type="button" onClick={onPrev}>
-            <span aria-hidden="true">←</span> Previous
-            <span className="modal-footer-extra"> project</span>
+            <span aria-hidden="true">←</span>
+            <span>
+              Previous<span className="modal-footer-extra"> project</span>
+            </span>
           </button>
           <span className="modal-footer-label">
             {project.category === 'experience' ? 'WORK EXPERIENCE' : 'SIDE BUILDS'}
           </span>
           <button type="button" onClick={onNext}>
-            Next<span className="modal-footer-extra"> project</span>{' '}
+            <span>
+              Next<span className="modal-footer-extra"> project</span>
+            </span>
             <span aria-hidden="true">→</span>
           </button>
         </footer>
