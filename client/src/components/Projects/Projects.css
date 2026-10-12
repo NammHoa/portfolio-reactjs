@@ -22,16 +22,6 @@
   margin-top: 8px;
 }
 
-.projects__status {
-  padding: 48px 0;
-  font-size: var(--text-sm);
-  color: var(--text);
-}
-
-.projects__status--error {
-  color: #b5544a;
-}
-
 .project {
   display: grid;
   grid-template-columns: 1fr 1fr;

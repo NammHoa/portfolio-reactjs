@@ -4,7 +4,7 @@ import '../Projects/Projects.css'
 import './Portfolio.css'
 
 function Portfolio() {
-  const { portfolioProjects, loading, error, openAt } = useProjectModal()
+  const { portfolioProjects, openAt } = useProjectModal()
 
   return (
     <section className="projects portfolio" id="portfolio">
@@ -13,16 +13,7 @@ function Portfolio() {
         <span>SIDE BUILDS</span>
       </div>
 
-      {loading && <p className="projects__status">Loading projects…</p>}
-      {error && (
-        <p className="projects__status projects__status--error">
-          Couldn't load projects. Please try again later.
-        </p>
-      )}
-
-      {!loading && !error && (
-        <ProjectList projects={portfolioProjects} onOpen={openAt} />
-      )}
+      <ProjectList projects={portfolioProjects} onOpen={openAt} />
     </section>
   )
 }

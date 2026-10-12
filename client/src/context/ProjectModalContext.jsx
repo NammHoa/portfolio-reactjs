@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import ProjectModal from '../components/ProjectModal/ProjectModal'
 import { getProjects } from '../lib/api'
 import { PROJECT_ASSETS } from '../data/projectAssets'
+import fallbackProjects from '../data/projects.fallback.json'
 import { canFly, fly, prefersReducedMotion } from '../components/ProjectModal/modalTransition'
 
 const ProjectModalContext = createContext(null)
@@ -25,7 +26,9 @@ const isOnScreen = (element) => {
     rect.left < window.innerWidth
   )
 }
-const CACHE_KEY = 'portfolio:projects:v1'
+
+// v2: the first version could outrank the baked-in copy with stale data after a deploy.
+const CACHE_KEY = 'portfolio:projects:v2'
 
 function mergeProjects(data) {
   return data.map((project, i) => ({
@@ -53,10 +56,12 @@ function writeCache(data) {
 }
 
 export function ProjectModalProvider({ children }) {
-  const cached = readCache()
-  const [projects, setProjects] = useState(cached ? mergeProjects(cached) : [])
-  const [loading, setLoading] = useState(!cached)
-  const [error, setError] = useState(null)
+  // The page never waits for the API: it starts from the last answer this browser
+  // saw, or else from the copy baked into the build, and swaps in live data when
+  // the API replies. A sleeping or failing API therefore changes nothing on screen.
+  const [projects, setProjects] = useState(() =>
+    mergeProjects(readCache() ?? fallbackProjects)
+  )
   const [openIndex, setOpenIndex] = useState(null)
   // How the modal was opened: 'flight' | 'grow' | 'fade' (see ProjectModal).
   const [mode, setMode] = useState('fade')
@@ -67,17 +72,13 @@ export function ProjectModalProvider({ children }) {
 
     getProjects()
       .then((data) => {
-        if (ignore) return
+        // An empty or malformed answer must not wipe out what is already showing.
+        if (ignore || !Array.isArray(data) || data.length === 0) return
         setProjects(mergeProjects(data))
         writeCache(data)
       })
-      .catch((err) => {
-        // With cached data already on screen, fail silently in the
-        // background instead of replacing it with an error message.
-        if (!ignore && !cached) setError(err.message)
-      })
-      .finally(() => {
-        if (!ignore) setLoading(false)
+      .catch(() => {
+        // Offline, asleep or failing API: keep showing what we have.
       })
 
     return () => {
@@ -154,7 +155,7 @@ export function ProjectModalProvider({ children }) {
 
   return (
     <ProjectModalContext.Provider
-      value={{ experienceProjects, portfolioProjects, loading, error, openAt }}
+      value={{ experienceProjects, portfolioProjects, openAt }}
     >
       {children}
       {openIndex !== null && (
