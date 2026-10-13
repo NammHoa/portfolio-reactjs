@@ -27,6 +27,11 @@ const CONTACT_LINKS = [
 
 const EMPTY_FORM = { name: '', email: '', message: '' }
 
+// Same limits and email shape as the server (server/src/utils/validateContact.js).
+// The browser stops most mistakes early; the server still checks everything again.
+const LIMITS = { name: 100, email: 254, message: 5000 }
+const EMAIL_PATTERN = '[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}'
+
 function Contact() {
   const [formData, setFormData] = useState(EMPTY_FORM)
   const [status, setStatus] = useState('idle')
@@ -49,7 +54,11 @@ function Contact() {
     setErrorMessage('')
 
     try {
-      await sendContactMessage(formData)
+      await sendContactMessage({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        message: formData.message.trim(),
+      })
       setStatus('success')
       setFormData(EMPTY_FORM)
     } catch (error) {
@@ -102,6 +111,8 @@ function Contact() {
               id="contact-name"
               name="name"
               type="text"
+              autoComplete="name"
+              maxLength={LIMITS.name}
               required
               value={formData.name}
               onChange={handleChange}
@@ -115,6 +126,10 @@ function Contact() {
               id="contact-email"
               name="email"
               type="email"
+              autoComplete="email"
+              maxLength={LIMITS.email}
+              pattern={EMAIL_PATTERN}
+              title="Enter an address like you@example.com"
               required
               value={formData.email}
               onChange={handleChange}
@@ -128,6 +143,7 @@ function Contact() {
               id="contact-message"
               name="message"
               rows="5"
+              maxLength={LIMITS.message}
               required
               value={formData.message}
               onChange={handleChange}

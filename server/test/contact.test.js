@@ -62,6 +62,82 @@ describe('POST /api/contact', () => {
     expect(res.status).toBe(201)
   })
 
+  it('rejects an invalid email address with a clear message', async () => {
+    const res = await request(app)
+      .post('/api/contact')
+      .send({ name: 'Nam', email: 'not-an-email', message: 'Hello' })
+
+    expect(res.status).toBe(400)
+    expect(res.body.message).toMatch(/valid email/i)
+    expect(ContactMessage.create).not.toHaveBeenCalled()
+    expect(sendContactNotification).not.toHaveBeenCalled()
+  })
+
+  it('rejects a message over the length limit', async () => {
+    const res = await request(app)
+      .post('/api/contact')
+      .send({ name: 'Nam', email: 'nam@example.com', message: 'a'.repeat(5001) })
+
+    expect(res.status).toBe(400)
+    expect(res.body.message).toMatch(/too long/i)
+    expect(ContactMessage.create).not.toHaveBeenCalled()
+  })
+
+  it('rejects fields that are not text', async () => {
+    const res = await request(app)
+      .post('/api/contact')
+      .send({ name: 'Nam', email: { $ne: '' }, message: 'Hello' })
+
+    expect(res.status).toBe(400)
+    expect(ContactMessage.create).not.toHaveBeenCalled()
+  })
+
+  it('saves and emails the trimmed text', async () => {
+    ContactMessage.create.mockResolvedValue({ _id: '1' })
+    sendContactNotification.mockResolvedValue()
+
+    const res = await request(app)
+      .post('/api/contact')
+      .send({ name: '  Nam ', email: ' nam@example.com ', message: ' Hello \n' })
+
+    expect(res.status).toBe(201)
+    const trimmed = { name: 'Nam', email: 'nam@example.com', message: 'Hello' }
+    expect(ContactMessage.create).toHaveBeenCalledWith(trimmed)
+    expect(sendContactNotification).toHaveBeenCalledWith(trimmed)
+  })
+
+  it('answers an oversized request body with 413 JSON', async () => {
+    const res = await request(app)
+      .post('/api/contact')
+      .send({ name: 'Nam', email: 'nam@example.com', message: 'a'.repeat(40 * 1024) })
+
+    expect(res.status).toBe(413)
+    expect(res.body.message).toMatch(/too large/i)
+    expect(ContactMessage.create).not.toHaveBeenCalled()
+  })
+
+  it('answers a malformed JSON body with 400 JSON', async () => {
+    const res = await request(app)
+      .post('/api/contact')
+      .set('Content-Type', 'application/json')
+      .send('{"name": ')
+
+    expect(res.status).toBe(400)
+    expect(res.body.message).toMatch(/valid JSON/i)
+  })
+
+  it('returns 400 when the database refuses the data', async () => {
+    const validationError = new Error('invalid')
+    validationError.name = 'ValidationError'
+    ContactMessage.create.mockRejectedValue(validationError)
+
+    const res = await request(app)
+      .post('/api/contact')
+      .send({ name: 'Nam', email: 'nam@example.com', message: 'Hello' })
+
+    expect(res.status).toBe(400)
+  })
+
   it('returns 500 when saving fails', async () => {
     ContactMessage.create.mockRejectedValue(new Error('DB error'))
 
