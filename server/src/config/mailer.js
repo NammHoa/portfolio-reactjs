@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { buildContactEmail } from "../utils/contactEmail.js";
 
 let transporter;
 
@@ -20,8 +21,6 @@ export async function sendContactNotification({ name, email, message }) {
     from: `"Portfolio Contact Form" <${process.env.GMAIL_USER}>`,
     to: process.env.GMAIL_USER,
     replyTo: email,
-    subject: `New message from ${name}`,
-    text: `From: ${name} <${email}>\n\n${message}`,
-    html: `<p><strong>From:</strong> ${name} (${email})</p><p>${message}</p>`,
+    ...buildContactEmail({ name, email, message }),
   });
 }
