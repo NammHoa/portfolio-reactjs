@@ -37,6 +37,7 @@ describe('Contact form', () => {
       name: 'Nam',
       email: 'nam@example.com',
       message: 'Hello there',
+      website: '',
     })
   })
 
@@ -82,7 +83,31 @@ describe('Contact form', () => {
       name: 'Nam',
       email: 'nam@example.com',
       message: 'Hello there',
+      website: '',
     })
+  })
+
+  it('has a hidden trap field that people cannot reach and that is sent along', async () => {
+    sendContactMessage.mockResolvedValue({ id: null, notified: true })
+    render(<Contact />)
+
+    const trap = screen.getByLabelText(/website/i)
+    expect(trap.closest('[aria-hidden="true"]')).not.toBeNull()
+    expect(trap).toHaveAttribute('tabindex', '-1')
+    expect(trap).toHaveAttribute('autocomplete', 'off')
+
+    fillForm()
+    fireEvent.change(trap, { target: { value: 'https://spam.example' } })
+    fireEvent.click(screen.getByRole('button', { name: /send message/i }))
+
+    await waitFor(() => expect(sendContactMessage).toHaveBeenCalled())
+    expect(sendContactMessage.mock.calls[0][0].website).toBe('https://spam.example')
+  })
+
+  it('tells visitors what happens with their details', () => {
+    render(<Contact />)
+
+    expect(screen.getByText(/used only to reply to you/i)).toBeInTheDocument()
   })
 
   it('limits field length and helps browsers autofill', () => {

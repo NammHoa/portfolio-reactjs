@@ -25,7 +25,9 @@ const CONTACT_LINKS = [
   },
 ]
 
-const EMPTY_FORM = { name: '', email: '', message: '' }
+// `website` is a trap for bots: people never see it, so only a script that fills in every
+// field it finds will put anything there. The server drops those messages silently.
+const EMPTY_FORM = { name: '', email: '', message: '', website: '' }
 
 // Same limits and email shape as the server (server/src/utils/validateContact.js).
 // The browser stops most mistakes early; the server still checks everything again.
@@ -59,6 +61,7 @@ function Contact() {
         name: formData.name.trim(),
         email: formData.email.trim(),
         message: formData.message.trim(),
+        website: formData.website,
       })
       // Only an explicit false from the server means the owner was not told.
       setNotified(result?.notified !== false)
@@ -154,6 +157,21 @@ function Contact() {
             />
           </div>
 
+          {/* Honeypot: kept out of sight, out of the tab order and away from screen readers
+              and autofill, so a real visitor never fills it in. */}
+          <div className="contact__trap" aria-hidden="true">
+            <label htmlFor="contact-website">Website</label>
+            <input
+              id="contact-website"
+              name="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={formData.website}
+              onChange={handleChange}
+            />
+          </div>
+
           <button
             type="submit"
             className="contact__submit"
@@ -161,6 +179,11 @@ function Contact() {
           >
             {status === 'loading' ? 'Sending...' : 'Send message'}
           </button>
+
+          <p className="contact__privacy">
+            Your name, email and message are used only to reply to you. They are
+            never shared or sold.
+          </p>
 
           {status === 'success' && (
             <p className="contact__status contact__status--success">

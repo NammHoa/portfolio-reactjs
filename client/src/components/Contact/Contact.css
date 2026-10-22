@@ -170,6 +170,22 @@
   cursor: not-allowed;
 }
 
+/* Honeypot field: pushed off screen instead of display:none, which some bots skip. */
+.contact__trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.contact__privacy {
+  margin: 0;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  color: var(--color-text-soft);
+}
+
 .contact__status {
   font-size: var(--text-sm);
   font-weight: 600;

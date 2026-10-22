@@ -94,6 +94,40 @@ describe('POST /api/contact', () => {
     expect(res.body.notified).toBe(true)
   })
 
+  it('quietly drops a message when the hidden honeypot field is filled', async () => {
+    const res = await request(app)
+      .post('/api/contact')
+      .send({
+        name: 'Bot',
+        email: 'bot@example.com',
+        message: 'Buy cheap stuff',
+        website: 'https://spam.example',
+      })
+
+    // Looks like a success to the bot, but nothing is stored or emailed.
+    expect(res.status).toBe(201)
+    expect(ContactMessage.create).not.toHaveBeenCalled()
+    expect(sendContactNotification).not.toHaveBeenCalled()
+  })
+
+  it('treats an empty honeypot field as a normal message', async () => {
+    ContactMessage.create.mockResolvedValue({ _id: '1' })
+    ContactMessage.updateOne.mockResolvedValue()
+    sendContactNotification.mockResolvedValue()
+
+    const res = await request(app)
+      .post('/api/contact')
+      .send({ name: 'Nam', email: 'nam@example.com', message: 'Hello', website: '' })
+
+    expect(res.status).toBe(201)
+    expect(ContactMessage.create).toHaveBeenCalledWith({
+      name: 'Nam',
+      email: 'nam@example.com',
+      message: 'Hello',
+    })
+    expect(sendContactNotification).toHaveBeenCalled()
+  })
+
   it('rejects an invalid email address with a clear message', async () => {
     const res = await request(app)
       .post('/api/contact')

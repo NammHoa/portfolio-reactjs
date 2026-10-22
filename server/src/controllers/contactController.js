@@ -13,6 +13,13 @@ async function recordNotifyResult(id, update) {
 }
 
 export async function createContactMessage(req, res) {
+  // Honeypot: the form has a hidden `website` field that people never see. Anything in
+  // it came from a bot, which gets the same answer as a success so it learns nothing,
+  // while nothing is saved or emailed.
+  if (typeof req.body?.website === 'string' && req.body.website.trim() !== '') {
+    return res.status(201).json({ id: null, notified: true })
+  }
+
   const { values, error } = validateContact(req.body)
 
   if (error) {
