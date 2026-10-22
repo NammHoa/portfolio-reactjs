@@ -5,7 +5,7 @@ import ContactMessage from '../src/models/ContactMessage.js'
 import { sendContactNotification } from '../src/config/mailer.js'
 
 vi.mock('../src/models/ContactMessage.js', () => ({
-  default: { create: vi.fn() },
+  default: { create: vi.fn(), updateOne: vi.fn() },
 }))
 
 vi.mock('../src/config/mailer.js', () => ({
@@ -51,8 +51,9 @@ describe('POST /api/contact', () => {
     })
   })
 
-  it('still returns 201 when the notification email fails', async () => {
+  it('still returns 201 when the notification email fails, and says it was not delivered', async () => {
     ContactMessage.create.mockResolvedValue({ _id: '1' })
+    ContactMessage.updateOne.mockResolvedValue()
     sendContactNotification.mockRejectedValue(new Error('SMTP down'))
 
     const res = await request(app)
@@ -60,6 +61,37 @@ describe('POST /api/contact', () => {
       .send({ name: 'Nam', email: 'nam@example.com', message: 'Hello' })
 
     expect(res.status).toBe(201)
+    expect(res.body).toEqual({ id: '1', notified: false })
+    expect(ContactMessage.updateOne).toHaveBeenCalledWith(
+      { _id: '1' },
+      { notified: false, notifyError: 'SMTP down' }
+    )
+  })
+
+  it('marks the saved message as notified when the email goes out', async () => {
+    ContactMessage.create.mockResolvedValue({ _id: '1' })
+    ContactMessage.updateOne.mockResolvedValue()
+    sendContactNotification.mockResolvedValue()
+
+    const res = await request(app)
+      .post('/api/contact')
+      .send({ name: 'Nam', email: 'nam@example.com', message: 'Hello' })
+
+    expect(res.body).toEqual({ id: '1', notified: true })
+    expect(ContactMessage.updateOne).toHaveBeenCalledWith({ _id: '1' }, { notified: true })
+  })
+
+  it('does not fail the request when recording the email result fails', async () => {
+    ContactMessage.create.mockResolvedValue({ _id: '1' })
+    ContactMessage.updateOne.mockRejectedValue(new Error('DB blip'))
+    sendContactNotification.mockResolvedValue()
+
+    const res = await request(app)
+      .post('/api/contact')
+      .send({ name: 'Nam', email: 'nam@example.com', message: 'Hello' })
+
+    expect(res.status).toBe(201)
+    expect(res.body.notified).toBe(true)
   })
 
   it('rejects an invalid email address with a clear message', async () => {

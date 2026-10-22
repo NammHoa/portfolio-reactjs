@@ -36,6 +36,7 @@ function Contact() {
   const [formData, setFormData] = useState(EMPTY_FORM)
   const [status, setStatus] = useState('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const [notified, setNotified] = useState(true)
   const { ref, isVisible, direction } = useReveal()
   const classes = [
     'contact',
@@ -54,11 +55,13 @@ function Contact() {
     setErrorMessage('')
 
     try {
-      await sendContactMessage({
+      const result = await sendContactMessage({
         name: formData.name.trim(),
         email: formData.email.trim(),
         message: formData.message.trim(),
       })
+      // Only an explicit false from the server means the owner was not told.
+      setNotified(result?.notified !== false)
       setStatus('success')
       setFormData(EMPTY_FORM)
     } catch (error) {
@@ -161,7 +164,9 @@ function Contact() {
 
           {status === 'success' && (
             <p className="contact__status contact__status--success">
-              Thanks! I'll get back to you soon.
+              {notified
+                ? "Thanks! I'll get back to you soon."
+                : `Thanks! Your message is saved, but I may not see it right away. For a faster reply, email ${CONTACT_LINKS[0].value}.`}
             </p>
           )}
           {status === 'error' && (

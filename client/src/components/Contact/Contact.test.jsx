@@ -40,6 +40,30 @@ describe('Contact form', () => {
     })
   })
 
+  it('points the visitor at the direct email when the server could not notify the owner', async () => {
+    sendContactMessage.mockResolvedValue({ id: '1', notified: false })
+    render(<Contact />)
+
+    fillForm()
+    fireEvent.click(screen.getByRole('button', { name: /send message/i }))
+
+    await waitFor(() => {
+      expect(screen.getByText(/message is saved/i)).toHaveTextContent('hoanam270304@gmail.com')
+    })
+  })
+
+  it('promises a reply when the owner was notified', async () => {
+    sendContactMessage.mockResolvedValue({ id: '1', notified: true })
+    render(<Contact />)
+
+    fillForm()
+    fireEvent.click(screen.getByRole('button', { name: /send message/i }))
+
+    await waitFor(() => {
+      expect(screen.getByText(/get back to you soon/i)).toBeInTheDocument()
+    })
+  })
+
   it('sends the text without leading or trailing spaces', async () => {
     sendContactMessage.mockResolvedValue({ _id: '1' })
     render(<Contact />)

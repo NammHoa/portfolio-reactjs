@@ -8,6 +8,10 @@ const contactMessageSchema = new mongoose.Schema(
     name: { type: String, required: true, trim: true, maxlength: CONTACT_LIMITS.name },
     email: { type: String, required: true, trim: true, maxlength: CONTACT_LIMITS.email },
     message: { type: String, required: true, trim: true, maxlength: CONTACT_LIMITS.message },
+    // Whether the notification email reached the owner. false means the message is saved
+    // but nobody was told, so find these with ContactMessage.find({ notified: false }).
+    notified: { type: Boolean, default: false },
+    notifyError: { type: String, maxlength: 500 },
   },
   { timestamps: true }
 )
