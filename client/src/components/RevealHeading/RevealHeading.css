@@ -1,0 +1,31 @@
+/* Resting styles are the finished look. The motion below only runs for visitors who have
+   not asked for reduced motion, and only inside a section that carries the `.reveal`
+   classes (About, Skills, Contact): the section toggles `.reveal--visible` as it
+   scrolls into view. */
+
+.reveal-heading__line {
+  display: block;
+  /* the mask the line rises out of; the padding keeps descenders inside */
+  overflow: hidden;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
+}
+
+.reveal-heading__text {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal .reveal-heading__text {
+    opacity: 0.14;
+    transform: translateY(108%);
+    transition:
+      transform 0.85s var(--ease-out) calc(0.1s + var(--line, 0) * 0.12s),
+      opacity 0.6s ease-out calc(0.5s + var(--line, 0) * 0.12s);
+  }
+
+  .reveal--visible .reveal-heading__text {
+    opacity: 1;
+    transform: none;
+  }
+}

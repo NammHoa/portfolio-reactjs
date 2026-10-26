@@ -133,8 +133,8 @@
   opacity: 0;
   transform: translateY(28px);
   transition:
-    opacity 0.6s var(--ease-out) calc(0.1s + var(--i, 0) * 0.09s),
-    transform 0.6s var(--ease-out) calc(0.1s + var(--i, 0) * 0.09s),
+    opacity 0.6s var(--ease-out) calc(0.3s + var(--i, 0) * 0.09s),
+    transform 0.6s var(--ease-out) calc(0.3s + var(--i, 0) * 0.09s),
     translate 0.3s var(--ease-out),
     box-shadow 0.3s var(--ease-out);
 }

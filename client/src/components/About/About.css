@@ -135,3 +135,29 @@
   }
 
 }
+
+/* Motion: the text follows the heading, then the card rises. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal .about__text,
+  .reveal .about__card {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.6s var(--ease-out) var(--about-delay),
+      transform 0.7s var(--ease-out) var(--about-delay);
+  }
+
+  .reveal .about__text {
+    --about-delay: 0.4s;
+  }
+
+  .reveal .about__card {
+    --about-delay: 0.55s;
+  }
+
+  .reveal--visible .about__text,
+  .reveal--visible .about__card {
+    opacity: 1;
+    transform: none;
+  }
+}

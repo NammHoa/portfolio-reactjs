@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { IconMail, IconPhone, IconGithub } from '../Icons/icons'
 import { sendContactMessage } from '../../lib/api'
 import { useReveal } from '../../hooks/useReveal'
+import RevealHeading from '../RevealHeading/RevealHeading'
 import './Contact.css'
 
 const CONTACT_LINKS = [
@@ -82,11 +83,10 @@ function Contact() {
 
       <div className="contact__grid">
         <div className="contact__intro">
-          <h2 className="contact__heading">
-            Got an idea?
-            <br />
-            Let's build it together.
-          </h2>
+          <RevealHeading
+            className="contact__heading"
+            lines={['Got an idea?', "Let's build it together."]}
+          />
           <p className="contact__subtitle">
             I'm open to internships and frontend roles. Reach out and I'll
             get back to you soon.

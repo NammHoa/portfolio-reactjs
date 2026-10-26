@@ -1,5 +1,6 @@
 import avatar from '../../assets/avatar.webp'
 import { useReveal } from '../../hooks/useReveal'
+import RevealHeading from '../RevealHeading/RevealHeading'
 import './About.css'
 
 const EDUCATION = [
@@ -26,9 +27,10 @@ function About() {
 
       <div className="about__grid">
         <div className="about__intro">
-          <h2 className="about__heading">
-            A developer who cares about the small details.
-          </h2>
+          <RevealHeading
+            className="about__heading"
+            lines={['A developer who cares', 'about the small details.']}
+          />
 
           <p className="about__text">
             I'm Lam Huynh Hoa Nam, a recent Software Engineering graduate

@@ -1,4 +1,5 @@
 import { useReveal } from '../../hooks/useReveal'
+import RevealHeading from '../RevealHeading/RevealHeading'
 import {
   IconCode,
   IconBrowser,
@@ -57,11 +58,10 @@ function Skills() {
       </div>
 
       <div className="skills__layout">
-        <h2 className="skills__intro">
-          Tools I reach for
-          <br />
-          to ship real products.
-        </h2>
+        <RevealHeading
+          className="skills__intro"
+          lines={['Tools I reach for', 'to ship real products.']}
+        />
 
         <div className="skills__grid">
           {SKILL_GROUPS.map((group, index) => (
