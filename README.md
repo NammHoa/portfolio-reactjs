@@ -58,6 +58,8 @@ Environment variables (`server/.env`):
 | `CLIENT_URL` | Origin allowed by CORS — the client's URL |
 | `GMAIL_USER` | Gmail address used to send contact notifications |
 | `GMAIL_APP_PASSWORD` | [Gmail App Password](https://myaccount.google.com/apppasswords) (not your normal password; requires 2-Step Verification) |
+| `RESEND_API_KEY` | Optional. [Resend](https://resend.com) key; when set, notifications go out over HTTPS instead of Gmail SMTP. Needed on Render's free tier, which blocks SMTP ports |
+| `MAIL_FROM` | Optional sender for Resend, once a domain is verified there |
 
 Seed the database with the initial project data:
 
