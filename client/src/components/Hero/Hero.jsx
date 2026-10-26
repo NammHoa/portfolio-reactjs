@@ -8,7 +8,7 @@ function Hero() {
         <div className="hero__content">
           <span className="hero__eyebrow">
             <span className="hero__dot"></span>
-            ASPIRING FULLSTACK ENGINEER
+            ASPIRING FRONTEND ENGINEER
           </span>
 
           <h1 className="hero__title">

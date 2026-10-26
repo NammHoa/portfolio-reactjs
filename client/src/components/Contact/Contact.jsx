@@ -88,7 +88,7 @@ function Contact() {
             Let's build it together.
           </h2>
           <p className="contact__subtitle">
-            I'm open to internships and fullstack roles. Reach out and I'll
+            I'm open to internships and frontend roles. Reach out and I'll
             get back to you soon.
           </p>
 
