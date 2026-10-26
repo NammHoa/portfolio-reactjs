@@ -32,11 +32,10 @@ function About() {
 
           <p className="about__text">
             I'm Lam Huynh Hoa Nam, a recent Software Engineering graduate
-            from HUFLIT (Ho Chi Minh City University of Foreign Languages —
-            Information Technology). A quick learner with strong
-            problem-solving skills capable of effectively handling technical
-            challenges in real-world environments. Aspiring to grow into
-            a Fullstack Engineer over the next 3 years.
+            from HUFLIT. I learn quickly, solve technical problems
+            methodically, and work comfortably in teams that follow either
+            Waterfall or Agile. My goal is to grow into a Senior Frontend
+            Developer over the next 3 years.
           </p>
         </div>
 
