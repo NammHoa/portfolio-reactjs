@@ -3,6 +3,7 @@ dotenv.config();
 
 import express from "express";
 import cors from "cors";
+import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import projectRoutes from "./routes/projectRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
@@ -26,6 +27,10 @@ const app = express();
 const proxyHops = Number(process.env.TRUST_PROXY_HOPS ?? 1);
 app.set("trust proxy", Number.isInteger(proxyHops) && proxyHops >= 0 ? proxyHops : 1);
 
+// Standard security headers (nosniff, no framing, HSTS, a locked-down CSP, no X-Powered-By).
+// The API is read from another origin (the site on Vercel) through CORS, so its answers
+// are marked as shareable across origins instead of helmet's same-origin default.
+app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
 app.use(cors({ origin: CLIENT_URL }));
 // A message tops out at 5000 characters, so 32kb leaves room for JSON overhead and
 // multi-byte text while refusing anything bigger than a real form could send.
