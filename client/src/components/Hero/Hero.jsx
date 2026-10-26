@@ -11,10 +11,25 @@ function Hero() {
             ASPIRING FRONTEND ENGINEER
           </span>
 
+          {/* Each line sits in a mask and rises into view. It arrives as an outline (the
+              idea) and fills in (the interface), like the blueprint ".HN" in the mascot scene. */}
           <h1 className="hero__title">
-            Ideas into
-            <br />
-            interfaces.
+            <span className="hero__line">
+              <span className="hero__line-text">Ideas into</span>
+            </span>{' '}
+            <span className="hero__line">
+              <span className="hero__line-text">
+                interfaces.
+                <svg
+                  className="hero__scribble"
+                  viewBox="0 0 300 14"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path d="M3 9 C 55 3, 118 13, 178 6 S 272 4, 297 8" pathLength="1" />
+                </svg>
+              </span>
+            </span>
           </h1>
 
           <p className="hero__subtitle">

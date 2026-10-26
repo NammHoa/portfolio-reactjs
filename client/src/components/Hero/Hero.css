@@ -97,6 +97,137 @@
   justify-content: center;
 }
 
+/* --- Entrance: plays once when the page opens or reloads. ---
+   The resting styles above are the finished look; every keyframe below only describes
+   where an element starts from, so with reduced motion (or no animation support) the
+   hero simply appears as it is. */
+
+.hero__line {
+  display: block;
+  /* the mask: lines rise out of it. The padding keeps descenders and the scribble inside. */
+  overflow: hidden;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.hero__line-text {
+  position: relative;
+  display: inline-block;
+}
+
+.hero__scribble {
+  position: absolute;
+  left: 0;
+  bottom: 0.02em;
+  width: 100%;
+  height: 0.16em;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.hero__scribble path {
+  fill: none;
+  stroke: var(--color-coral);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  vector-effect: non-scaling-stroke;
+}
+
+@keyframes heroRise {
+  from {
+    transform: translateY(108%);
+  }
+}
+
+/* idea (a faint draft) -> interface (solid ink). An outline looked messy here: the
+   variable font's overlapping contours show up as stray lines inside the letters. */
+@keyframes heroFill {
+  from {
+    color: rgba(33, 54, 28, 0.13);
+  }
+}
+
+@keyframes heroArrive {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+@keyframes heroStage {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.94);
+  }
+}
+
+@keyframes heroDraw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes heroPing {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  80%,
+  100% {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__eyebrow {
+    animation: heroArrive 0.6s var(--ease-out) both;
+  }
+
+  .hero__line-text {
+    animation:
+      heroRise 0.85s var(--ease-out) var(--rise-delay, 0.1s) both,
+      heroFill 0.55s ease-out var(--fill-delay, 0.7s) both;
+  }
+
+  .hero__line:nth-child(2) .hero__line-text {
+    --rise-delay: 0.22s;
+    --fill-delay: 0.84s;
+  }
+
+  .hero__scribble path {
+    animation: heroDraw 0.7s var(--ease-out) 1.2s both;
+  }
+
+  .hero__subtitle {
+    animation: heroArrive 0.7s var(--ease-out) 0.55s both;
+  }
+
+  .hero__actions {
+    animation: heroArrive 0.7s var(--ease-out) 0.7s both;
+  }
+
+  .hero__visual {
+    animation: heroStage 0.9s var(--ease-out) 0.3s both;
+  }
+
+  /* a quiet idle motion once everything has landed: the dot sends out a ring */
+  .hero__dot {
+    position: relative;
+  }
+
+  .hero__dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--color-coral);
+    animation: heroPing 2.4s ease-out 1.6s infinite;
+  }
+}
+
 @media (max-width: 900px) {
   .hero__inner {
     grid-template-columns: 1fr;
