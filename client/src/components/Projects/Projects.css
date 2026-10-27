@@ -81,7 +81,6 @@
 }
 
 .project__visual-frame {
-  perspective: 800px;
   cursor: pointer;
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -98,7 +97,6 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  transition: transform 0.15s ease;
 }
 
 .project__visual-index {

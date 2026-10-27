@@ -1,10 +1,8 @@
 import { useReveal } from '../../hooks/useReveal'
-import { useTilt } from '../../hooks/useTilt'
 import '../Projects/Projects.css'
 
 function ProjectRow({ project, delayIndex, reverse, onOpen }) {
   const { ref, isVisible, direction } = useReveal()
-  const tilt = useTilt(8)
   const hasVisual = Boolean(project.image || project.logo)
   // The modal grows out of (and returns to) the row that was clicked.
   const handleOpen = (event) => onOpen(event.currentTarget.closest('.project'))
@@ -27,14 +25,9 @@ function ProjectRow({ project, delayIndex, reverse, onOpen }) {
         <div
           className="project__visual-frame"
           aria-hidden="true"
-          onMouseMove={tilt.onMouseMove}
-          onMouseLeave={tilt.onMouseLeave}
           onClick={handleOpen}
         >
-          <div
-            className="project__visual"
-            ref={tilt.innerRef}
-          >
+          <div className="project__visual">
             {project.image ? (
               <img
                 src={project.image}
