@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import ThemeToggle from '../ThemeToggle/ThemeToggle'
 import './Header.css'
 
 const NAV_LINKS = [
@@ -54,6 +55,8 @@ function Header() {
           Let's talk
           <span aria-hidden="true">↗</span>
         </a>
+
+        <ThemeToggle />
 
         <button
           type="button"

@@ -38,7 +38,7 @@
 }
 
 .skills__group {
-  --duo-line: var(--color-forest);
+  --duo-line: var(--accent);
   --duo-tone: #f1c9a4;
   display: grid;
   grid-template-columns: 58px 1fr;
@@ -47,20 +47,20 @@
   align-items: center;
   padding: var(--card-pad);
   border-radius: var(--radius-card);
-  background: var(--color-peach-soft);
+  background: var(--block-peach);
   color: var(--color-ink);
 }
 
 .skills__group--sage {
   --duo-tone: #a9c1a1;
-  background: var(--color-sage-mid);
+  background: var(--block-sage);
 }
 
 .skills__group--forest {
-  --duo-line: var(--color-cream);
+  --duo-line: var(--color-on-dark);
   --duo-tone: rgba(255, 254, 250, 0.3);
-  background: var(--color-forest-mid);
-  color: var(--color-cream);
+  background: var(--block-forest-mid);
+  color: var(--color-on-dark);
 }
 
 .skills__icon {
@@ -69,7 +69,7 @@
   width: 58px;
   height: 58px;
   border-radius: var(--radius-md);
-  background: rgba(255, 254, 250, 0.6);
+  background: var(--veil);
   font-size: 36px;
 }
 
@@ -95,14 +95,14 @@
   font-weight: var(--chip-weight);
   padding: var(--chip-padding);
   border-radius: 999px;
-  background: rgba(255, 254, 250, 0.62);
+  background: var(--veil);
   color: var(--color-ink);
 }
 
 /* Darker than the card, not lighter, so the cream text keeps AA contrast. */
 .skills__group--forest .skills__tag {
   background: rgba(20, 33, 15, 0.28);
-  color: var(--color-cream);
+  color: var(--color-on-dark);
 }
 
 @media (max-width: 900px) {
@@ -170,7 +170,7 @@
 }
 
 .skills__tag:hover {
-  background: rgba(255, 254, 250, 0.95);
+  background: var(--veil-hover);
 }
 
 .skills__group--forest .skills__tag:hover {

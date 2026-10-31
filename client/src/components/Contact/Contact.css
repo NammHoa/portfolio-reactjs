@@ -23,9 +23,9 @@
   gap: 48px;
   margin-top: 48px;
   padding: var(--block-pad);
-  background: var(--color-forest);
+  background: var(--block-forest);
   border-radius: var(--radius-block);
-  color: var(--color-cream);
+  color: var(--color-on-dark);
 }
 
 .contact__heading {
@@ -33,7 +33,7 @@
   line-height: 1.08;
   letter-spacing: -0.03em;
   margin-bottom: 20px;
-  color: var(--color-cream);
+  color: var(--color-on-dark);
 }
 
 .contact__subtitle {
@@ -59,7 +59,7 @@
   gap: 12px;
   padding: 8px 0;
   text-decoration: none;
-  color: var(--color-cream);
+  color: var(--color-on-dark);
   font-size: var(--text-sm);
   font-weight: 600;
 }
@@ -98,7 +98,7 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
-  background: var(--color-cream);
+  background: var(--bg);
   border-radius: var(--radius-card);
   padding: var(--card-pad);
   color: var(--color-text);
@@ -124,7 +124,7 @@
   font: inherit;
   font-size: var(--text-base);
   color: var(--text-h);
-  background: var(--color-sage-pale);
+  background: var(--surface-soft);
   border: 1px solid transparent;
   border-radius: var(--radius-sm);
   padding: 12px 14px;
@@ -141,7 +141,7 @@
 .contact__field textarea:focus {
   outline: 2px solid var(--accent);
   outline-offset: 1px;
-  background: var(--color-cream);
+  background: var(--bg);
 }
 
 .contact__submit {

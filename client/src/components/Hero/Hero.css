@@ -145,7 +145,7 @@
    variable font's overlapping contours show up as stray lines inside the letters. */
 @keyframes heroFill {
   from {
-    color: rgba(33, 54, 28, 0.13);
+    color: color-mix(in srgb, var(--text-h) 13%, transparent);
   }
 }
 

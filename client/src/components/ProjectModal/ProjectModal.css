@@ -141,7 +141,7 @@ html[data-project-transition='close']::view-transition-new(root) {
   height: 36px;
   border-radius: 50%;
   border: 1px solid var(--border);
-  background: #fff;
+  background: var(--surface);
   font-size: 20px;
   line-height: 1;
   color: var(--text-h);
@@ -180,7 +180,7 @@ html[data-project-transition='close']::view-transition-new(root) {
 
 /* Projects shown by a logo get a calm sage stage instead. */
 .modal-visual--logo {
-  background: var(--color-sage-mid);
+  background: var(--block-sage);
 }
 
 .modal-visual--logo::before {
@@ -194,7 +194,7 @@ html[data-project-transition='close']::view-transition-new(root) {
   width: 100%;
   aspect-ratio: 2 / 1;
   overflow: hidden;
-  background: linear-gradient(155deg, var(--color-sage-pale), var(--color-sage-mid));
+  background: linear-gradient(155deg, var(--surface-soft), var(--block-sage));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -381,8 +381,8 @@ html[data-project-transition='close']::view-transition-new(root) {
 }
 
 .modal-highlight-icon {
-  --duo-line: var(--color-forest);
-  --duo-tone: var(--color-sage-mid);
+  --duo-line: var(--accent);
+  --duo-tone: var(--block-sage);
   display: flex;
   margin-top: 1px;
   font-size: 20px;
@@ -399,7 +399,7 @@ html[data-project-transition='close']::view-transition-new(root) {
   font-weight: var(--chip-weight);
   padding: var(--chip-padding);
   border-radius: 999px;
-  background: var(--color-sage-pale);
+  background: var(--surface-soft);
   color: var(--text-h);
 }
 
@@ -412,8 +412,8 @@ html[data-project-transition='close']::view-transition-new(root) {
   height: 48px;
   padding: 0 8px 0 24px;
   border-radius: 999px;
-  background: var(--color-forest);
-  color: var(--color-cream);
+  background: var(--accent);
+  color: var(--bg);
   font-size: var(--text-base);
   font-weight: 600;
   text-decoration: none;
@@ -423,7 +423,7 @@ html[data-project-transition='close']::view-transition-new(root) {
 }
 
 .modal-cta:hover {
-  background: var(--color-forest-mid);
+  background: var(--accent-hover);
   translate: 0 -2px;
 }
 
@@ -433,7 +433,7 @@ html[data-project-transition='close']::view-transition-new(root) {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(255, 254, 250, 0.16);
+  background: color-mix(in srgb, var(--bg) 16%, transparent);
   font-size: var(--text-base);
   line-height: 1;
   transition:
@@ -465,7 +465,7 @@ html[data-project-transition='close']::view-transition-new(root) {
 }
 
 .modal-link:hover {
-  color: var(--color-forest-mid);
+  color: var(--accent-hover);
   text-decoration-color: currentColor;
 }
 

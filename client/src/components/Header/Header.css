@@ -29,7 +29,7 @@
   max-width: 980px;
   margin: 24px auto 0;
   padding: 12px 20px;
-  background: #fff;
+  background: var(--surface);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-float);
 }
@@ -158,6 +158,11 @@
 
   .header__cta--desktop {
     display: none;
+  }
+
+  /* With the desktop button gone, the theme switch sits beside the menu button. */
+  .header__inner .theme-toggle {
+    margin-left: auto;
   }
 
   .header__cta--mobile {

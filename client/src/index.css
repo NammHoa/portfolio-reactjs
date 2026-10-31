@@ -19,6 +19,21 @@
   --color-coral-deep: #b5544a;
   --color-sun: #f7c948;
 
+  /* Surfaces and colour blocks. Each has a darker twin under [data-theme='dark'] below, so
+     components say what a thing IS (a card, a peach block), never which shade it is. */
+  --color-on-dark: #fcfaf5; /* text on the forest blocks; stays light in both themes */
+  --surface: #ffffff;
+  --surface-soft: var(--color-sage-pale);
+  --block-peach: var(--color-peach-soft);
+  --block-sage: var(--color-sage-mid);
+  --block-forest: var(--color-forest);
+  --block-forest-mid: var(--color-forest-mid);
+  --accent-hover: var(--color-forest-mid);
+  /* Light veils laid over the coloured blocks (chips, icon tiles). */
+  --veil: rgba(255, 254, 250, 0.62);
+  --veil-strong: rgba(255, 254, 250, 0.75);
+  --veil-hover: rgba(255, 254, 250, 0.95);
+
   /* Radius scale: small controls, tiles, cards, colour blocks. Pills use 999px. */
   --radius-sm: 14px;
   --radius-md: 20px;
@@ -75,6 +90,36 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dark theme: the same olive family, turned down. It only redefines the tokens above;
+   the mascot card keeps its light peach on purpose (the drawing has fixed dark outlines).
+   Set on <html> by /theme-init.js before the first paint and by the header switch. */
+[data-theme='dark'] {
+  color-scheme: dark;
+  --color-cream: #11190f;
+  --color-ink: #eef3e8;
+  --color-text: #c5cfc1;
+  --color-text-soft: #9fac9a;
+  --color-line: #2c3929;
+  --color-forest: #aacb93;
+  --surface: #192317;
+  --surface-soft: #202c1e;
+  --block-peach: #2a261e;
+  --block-sage: #243324;
+  --block-forest: #1f361e;
+  --block-forest-mid: #2c4a29;
+  --accent-hover: #c6e0b3;
+  --veil: rgba(255, 255, 255, 0.08);
+  --veil-strong: rgba(255, 255, 255, 0.1);
+  --veil-hover: rgba(255, 255, 255, 0.18);
+  --shadow-soft: 0 20px 40px -20px rgba(0, 0, 0, 0.55);
+  --shadow-float: 0 12px 24px -12px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme='dark'] ::selection {
+  background: var(--color-forest-mid);
+  color: var(--color-on-dark);
 }
 
 * {
