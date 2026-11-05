@@ -42,10 +42,12 @@
       "Session-fixation prevention, brute-force rate limiting, and XSS sanitization"
     ],
     "tags": [
-      "Spring Boot",
+      "HTML/CSS",
+      "JavaScript",
       "Thymeleaf",
-      "Firebase",
-      "MoMo API"
+      "Java",
+      "Spring Boot",
+      "Firebase (Firestore)"
     ],
     "link": "https://sunilies.vn/",
     "imageAspect": "1024 / 487",

@@ -36,7 +36,7 @@ const PROJECTS = [
       'Firebase Storage, Stringee Voice OTP, and JavaMail integrations',
       'Session-fixation prevention, brute-force rate limiting, and XSS sanitization',
     ],
-    tags: ['Spring Boot', 'Thymeleaf', 'Firebase', 'MoMo API'],
+    tags: ['HTML/CSS', 'JavaScript', 'Thymeleaf', 'Java', 'Spring Boot', 'Firebase (Firestore)'],
     link: 'https://sunilies.vn/',
     imageAspect: '1024 / 487',
     category: 'experience',
