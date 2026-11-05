@@ -126,7 +126,7 @@
 /* Bright blocks inside the dark page (peach and sage cards, the contact form) are light
    surfaces again, so everything inside them gets the light theme's dark ink back. */
 [data-theme='dark'] .skills__group:not(.skills__group--forest),
-[data-theme='dark'] .project--card,
+[data-theme='dark'] .project--card:nth-child(odd),
 [data-theme='dark'] .contact__form {
   --text-h: #21361c;
   --text: #3f483c;

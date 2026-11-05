@@ -391,3 +391,12 @@
     min-height: 44px;
   }
 }
+
+/* Dark theme only: the side-build cards alternate, one bright peach and one deep green, so the
+   pair has the same bright/dark rhythm as the Skills cards. Text keeps the dark theme's own
+   colours here (the peach cards get the light theme's dark ink back in index.css). */
+[data-theme='dark'] .projects__cards > .project--card:nth-child(even) {
+  background: var(--block-forest);
+  --veil-strong: rgba(255, 254, 250, 0.12);
+  --color-text-soft: #b3bda9;
+}
