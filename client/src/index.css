@@ -99,8 +99,7 @@
  *  - ONE warm accent (here the site's own peach) as the complement of all the green;
  *  - a few bright blocks (peach, sage) between dark ones to set the rhythm.
  * It only redefines the tokens above. The bright blocks put their dark text back (see the
- * rule after this block). Set on <html> by /theme-init.js before the first paint and by the
- * floating switch. */
+ * rule after this block). Set on <html> only by the floating switch; the page opens light. */
 [data-theme='dark'] {
   color-scheme: dark;
   --color-cream: #1c231d;

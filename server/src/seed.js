@@ -48,7 +48,7 @@ const PROJECTS = [
     period: 'Aug 2025 – Nov 2025',
     headlineLines: ['Samples in,', 'reports out.'],
     description:
-      'A mobile app for Lead's ERP platform that turns laboratory sample tracking into automated reports, independently owned end-to-end within a 6-person team.',
+      'A mobile app for Lead ERP platform that turns laboratory sample tracking into automated reports, independently owned end-to-end within a 6-person team.',
     highlights: [
       'Structured schema managing 10+ critical field parameters',
       'Role-based access control segregating permissions across departments',
