@@ -1,19 +1,32 @@
+/* A floating button in the bottom-right corner: always in reach, outside the navbar.
+   Above the page and the header, below the project window (z-index 100). */
 .theme-toggle {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 60;
   display: inline-grid;
   place-items: center;
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  width: 46px;
+  height: 46px;
   padding: 0;
   border-radius: 50%;
   border: 1px solid var(--border);
-  background: transparent;
+  background: var(--surface);
+  box-shadow: var(--shadow-float);
   color: var(--text-h);
   cursor: pointer;
   transition:
     background-color 0.2s ease,
     border-color 0.2s ease,
     rotate 0.4s var(--ease-out);
+}
+
+@media (max-width: 480px) {
+  .theme-toggle {
+    right: 14px;
+    bottom: 14px;
+  }
 }
 
 .theme-toggle:hover {

@@ -382,7 +382,8 @@ html[data-project-transition='close']::view-transition-new(root) {
 
 .modal-highlight-icon {
   --duo-line: var(--accent);
-  --duo-tone: var(--block-sage);
+  /* a tint of the accent, so the tick stays readable in both themes */
+  --duo-tone: color-mix(in srgb, var(--accent) 28%, transparent);
   display: flex;
   margin-top: 1px;
   font-size: 20px;
@@ -444,7 +445,7 @@ html[data-project-transition='close']::view-transition-new(root) {
 
 .modal-cta:hover .modal-cta-arrow {
   background: var(--color-peach-soft);
-  color: var(--color-forest);
+  color: var(--forest-fixed);
   transform: rotate(45deg);
 }
 

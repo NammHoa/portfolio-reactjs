@@ -21,6 +21,7 @@
 
   /* Surfaces and colour blocks. Each has a darker twin under [data-theme='dark'] below, so
      components say what a thing IS (a card, a peach block), never which shade it is. */
+  --forest-fixed: #2f4a2b; /* the deep green, in both themes */
   --color-on-dark: #fcfaf5; /* text on the forest blocks; stays light in both themes */
   --surface: #ffffff;
   --surface-soft: var(--color-sage-pale);
@@ -92,29 +93,53 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Dark theme: the same olive family, turned down. It only redefines the tokens above;
-   the mascot card keeps its light peach on purpose (the drawing has fixed dark outlines).
-   Set on <html> by /theme-init.js before the first paint and by the header switch. */
+/* Dark theme, built on what the dark vgang.studio page actually does (measured, not guessed):
+ *  - a calm, nearly neutral dark green page, not black;
+ *  - muted warm-grey body text and cream headings instead of white;
+ *  - ONE warm accent (here the site's own peach) as the complement of all the green;
+ *  - a few bright blocks (peach, sage) between dark ones to set the rhythm.
+ * It only redefines the tokens above. The bright blocks put their dark text back (see the
+ * rule after this block). Set on <html> by /theme-init.js before the first paint and by the
+ * floating switch. */
 [data-theme='dark'] {
   color-scheme: dark;
-  --color-cream: #11190f;
-  --color-ink: #eef3e8;
-  --color-text: #c5cfc1;
-  --color-text-soft: #9fac9a;
-  --color-line: #2c3929;
-  --color-forest: #aacb93;
-  --surface: #192317;
-  --surface-soft: #202c1e;
-  --block-peach: #2a261e;
-  --block-sage: #243324;
-  --block-forest: #1f361e;
-  --block-forest-mid: #2c4a29;
-  --accent-hover: #c6e0b3;
-  --veil: rgba(255, 255, 255, 0.08);
-  --veil-strong: rgba(255, 255, 255, 0.1);
-  --veil-hover: rgba(255, 255, 255, 0.18);
+  --color-cream: #1c231d;
+  --color-ink: #f5eddc;
+  --color-text: #bcc4b4;
+  --color-text-soft: #98a391;
+  --color-line: #34423a;
+  --color-forest: #e8b48c; /* the accent: warm peach, for buttons and links */
+  --surface: #252f27;
+  --surface-soft: #2c3830;
+  --block-peach: #f3dcc2;
+  --block-sage: #cdd7bd;
+  --block-forest: #234a30;
+  --block-forest-mid: #2f5a3c;
+  --accent-hover: #f2c9a8;
+  --veil: rgba(255, 254, 250, 0.55);
+  --veil-strong: rgba(255, 254, 250, 0.7);
+  --veil-hover: rgba(255, 254, 250, 0.92);
   --shadow-soft: 0 20px 40px -20px rgba(0, 0, 0, 0.55);
   --shadow-float: 0 12px 24px -12px rgba(0, 0, 0, 0.6);
+}
+
+/* Bright blocks inside the dark page (peach and sage cards, the contact form) are light
+   surfaces again, so everything inside them gets the light theme's dark ink back. */
+[data-theme='dark'] .skills__group:not(.skills__group--forest),
+[data-theme='dark'] .project--card,
+[data-theme='dark'] .contact__form {
+  --text-h: #21361c;
+  --text: #3f483c;
+  --color-ink: #21361c;
+  --color-text: #3f483c;
+  --color-text-soft: #5d675b;
+  --accent: var(--forest-fixed);
+  --border: #dfe5dc;
+}
+
+[data-theme='dark'] .contact__form {
+  --bg: #fcfaf5;
+  --surface-soft: #ecf1e9;
 }
 
 [data-theme='dark'] ::selection {

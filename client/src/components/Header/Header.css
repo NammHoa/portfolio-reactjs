@@ -160,11 +160,6 @@
     display: none;
   }
 
-  /* With the desktop button gone, the theme switch sits beside the menu button. */
-  .header__inner .theme-toggle {
-    margin-left: auto;
-  }
-
   .header__cta--mobile {
     display: inline-flex;
     margin-top: 12px;

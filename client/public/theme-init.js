@@ -8,7 +8,7 @@
       theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
     }
     document.documentElement.dataset.theme = theme
-  } catch (error) {
+  } catch {
     // Storage blocked: the page simply stays light until the visitor uses the switch.
   }
 })()
