@@ -9,7 +9,7 @@ const PROJECTS = [
   {
     name: 'Grade 10 Enrollment Registration System',
     role: 'Fullstack Developer · Team of 2',
-    period: 'Jun 2026 – Aug 2026',
+    period: 'June 2026 – August 2026',
     headlineLines: ['Enrollment,', 'without the chaos.'],
     description:
       'A full-stack registration for THPT Ham Thuan Nam, handling 600+ students with dynamic subject-combination logic, real-time status tracking, and an asynchronous email queue for automated confirmations.',
@@ -27,7 +27,7 @@ const PROJECTS = [
   {
     name: 'SUNILIES',
     role: 'Fullstack Developer · Team of 2',
-    period: 'Feb 2026 – Jun 2026',
+    period: 'February 2026 – June 2026',
     headlineLines: ['Commerce,', 'secured end to end.'],
     description:
       'An e-commerce covering product management, order processing, and user authentication, with MoMo Payment Gateway integrated for real-time transaction confirmation.',
@@ -45,7 +45,7 @@ const PROJECTS = [
   {
     name: 'Sample Management System',
     role: 'Fullstack Mobile Dev Intern · Team of 6',
-    period: 'Aug 2025 – Nov 2025',
+    period: 'August 2025 – November 2025',
     headlineLines: ['Samples in,', 'reports out.'],
     description:
       'A mobile app for Lead ERP platform that turns laboratory sample tracking into automated reports, independently owned end-to-end within a 6-person team.',
