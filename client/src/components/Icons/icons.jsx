@@ -44,6 +44,21 @@ export function IconGithub() {
   )
 }
 
+export function IconLinkedin() {
+  return (
+    <Duotone>
+      <rect className="duo__tone" x="4.2" y="4.2" width="18" height="18" rx="3" />
+      <g className="duo__line">
+        <rect x="3" y="3" width="18" height="18" rx="3" />
+        <path d="M8 10.5v6" />
+        <path d="M8 7.6v.01" />
+        <path d="M12 16.5v-6" />
+        <path d="M12 13a2.5 2.5 0 0 1 5 0v3.5" />
+      </g>
+    </Duotone>
+  )
+}
+
 export function IconCode() {
   return (
     <Duotone>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { IconMail, IconPhone, IconGithub } from '../Icons/icons'
+import { IconMail, IconPhone, IconGithub, IconLinkedin } from '../Icons/icons'
 import { sendContactMessage } from '../../lib/api'
 import { useReveal } from '../../hooks/useReveal'
 import RevealHeading from '../RevealHeading/RevealHeading'
@@ -23,6 +23,12 @@ const CONTACT_LINKS = [
     value: 'github.com/NammHoa',
     href: 'https://github.com/NammHoa',
     Icon: IconGithub,
+  },
+  {
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/namdev2703',
+    href: 'https://www.linkedin.com/in/namdev2703/',
+    Icon: IconLinkedin,
   },
 ]
 
