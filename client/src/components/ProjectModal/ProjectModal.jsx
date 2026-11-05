@@ -129,6 +129,7 @@ function ProjectModal({
         `modal-backdrop--${mode}`,
         closing ? 'modal-backdrop--closing' : '',
       ].join(' ')}
+      data-lenis-prevent
       onClick={requestClose}
     >
       <div

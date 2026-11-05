@@ -66,27 +66,8 @@
     translate 0.15s var(--ease-out);
 }
 
-/* The underline grows from the left on hover. */
-.header__nav a:not(.header__cta)::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -6px;
-  height: 2px;
-  border-radius: 2px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.3s var(--ease-out);
-}
-
 .header__nav a:not(.header__cta):hover {
   color: var(--text-h);
-}
-
-.header__nav a:not(.header__cta):hover::after {
-  transform: scaleX(1);
 }
 
 /* Pressed: a small push so a click always answers back. */
@@ -108,12 +89,6 @@
 
 .header__logo:active {
   translate: 0 1px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .header__nav a:not(.header__cta)::after {
-    transition: none;
-  }
 }
 
 .header__cta {
@@ -208,11 +183,6 @@
     padding: 12px 0;
     border-bottom: 1px solid var(--border);
     font-size: var(--text-lg);
-  }
-
-  /* The full-width rows already have a divider, so no underline here. */
-  .header__nav a:not(.header__cta)::after {
-    display: none;
   }
 
   .header__cta--desktop {

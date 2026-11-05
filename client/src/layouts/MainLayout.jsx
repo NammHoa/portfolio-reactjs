@@ -2,8 +2,11 @@ import { Outlet } from 'react-router-dom'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import ThemeToggle from '../components/ThemeToggle/ThemeToggle'
+import { useSmoothScroll } from '../hooks/useSmoothScroll'
 
 function MainLayout() {
+  useSmoothScroll()
+
   return (
     <div id="top">
       <Header />

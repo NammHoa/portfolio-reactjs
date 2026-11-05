@@ -224,11 +224,16 @@ a {
 }
 
 /* Nav links glide to their section instead of jumping (people who ask for reduced motion keep
-   the instant jump). */
+   the instant jump). Lenis (useSmoothScroll) does the work on top of this; it needs the
+   browser's own smoothing off while it runs. */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
   }
+}
+
+html.lenis {
+  scroll-behavior: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
