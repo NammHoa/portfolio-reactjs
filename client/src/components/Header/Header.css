@@ -55,16 +55,65 @@
 }
 
 .header__nav a:not(.header__cta) {
+  position: relative;
   color: var(--accent);
   text-decoration: none;
   font-size: var(--text-sm);
   font-weight: 600;
   letter-spacing: -0.1px;
-  transition: color 0.15s ease;
+  transition:
+    color 0.15s ease,
+    translate 0.15s var(--ease-out);
+}
+
+/* The underline grows from the left on hover. */
+.header__nav a:not(.header__cta)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s var(--ease-out);
 }
 
 .header__nav a:not(.header__cta):hover {
   color: var(--text-h);
+}
+
+.header__nav a:not(.header__cta):hover::after {
+  transform: scaleX(1);
+}
+
+/* Pressed: a small push so a click always answers back. */
+.header__nav a:not(.header__cta):active {
+  translate: 0 1px;
+}
+
+.header__nav a:focus-visible,
+.header__logo:focus-visible,
+.header__cta:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.header__logo {
+  transition: translate 0.15s var(--ease-out);
+}
+
+.header__logo:active {
+  translate: 0 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header__nav a:not(.header__cta)::after {
+    transition: none;
+  }
 }
 
 .header__cta {
@@ -86,6 +135,11 @@
 .header__cta:hover {
   opacity: 0.85;
   translate: 0 -2px;
+}
+
+.header__cta:active {
+  opacity: 1;
+  translate: 0 1px;
 }
 
 .header__cta--mobile {
@@ -154,6 +208,11 @@
     padding: 12px 0;
     border-bottom: 1px solid var(--border);
     font-size: var(--text-lg);
+  }
+
+  /* The full-width rows already have a divider, so no underline here. */
+  .header__nav a:not(.header__cta)::after {
+    display: none;
   }
 
   .header__cta--desktop {

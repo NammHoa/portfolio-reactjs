@@ -223,6 +223,14 @@ a {
   transform: none;
 }
 
+/* Nav links glide to their section instead of jumping (people who ask for reduced motion keep
+   the instant jump). */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal--hidden-up,
